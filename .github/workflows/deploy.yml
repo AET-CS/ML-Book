@@ -18,6 +18,8 @@ jobs:
 
       # Push the contents of _build/html to gh-pages
       - name: Deploy to GitHub Pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Ensure the ML-book/_build/html directory exists
           if [ ! -d "ML-book/_build/html" ]; then
@@ -32,7 +34,7 @@ jobs:
 
           # Remove old files and copy new ones
           rm -rf *
-          cp -r _build/html/* .
+          cp -r ML-book/_build/html/* .
           touch .nojekyll  # Prevent GitHub Pages from using Jekyll
 
           # Commit and push changes
