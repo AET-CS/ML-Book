@@ -33,6 +33,7 @@ jobs:
           git checkout --orphan gh-pages || git checkout gh-pages
 
           # Remove old files and copy new ones
+          ls
           rm -rf *
           cp -r ML-book/_build/html/* .
           touch .nojekyll  # Prevent GitHub Pages from using Jekyll
