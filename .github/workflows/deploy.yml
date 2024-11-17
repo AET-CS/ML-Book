@@ -16,7 +16,7 @@ jobs:
         run: |
           mkdir -p docs
           rm -rf docs/*
-          cp -r _build/html/* docs/
+          cp -r ML-book/_build/html/* docs/
 
       - name: Commit and push changes
         run: |
