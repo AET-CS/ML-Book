@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7. Linear Regression &mdash; Machine Learning for Research</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Linear Least Squares" href="notebooks/Least_Squares.html" />
+    <link rel="prev" title="6. Quick Jupyter Intro and Python Loops" href="jupyter-python-intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../intro.html" class="icon icon-home">
+            Project name not set
+              <img src="../_static/ML-logo-1.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hw01.html">1. Homework 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw02.html">2. Exploring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsl.html">3. Fixing WSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw03.html">4. August 28</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Bayes_Theorem_Student.html">5. Bayes’ Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-python-intro.html">6. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Least_Squares.html">8. Linear Least Squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Correlation_Coefficient.html">9. Correlation Coefficient</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linear Algebra in Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Student.html">10. Linear Algebra and Python Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Intro_to_Matrices_in_NumPy.html">11. Introduction to Matrices in NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Index_Warmup_Student.html">12. Matrix indices warmup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Gaussian_Elimination_Student.html">13. Gaussian Elimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/LogLogRegression.html">14. Log-Log Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Strassen-Lab.html">15. Strassen’s Algorithm (Optional Extension)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gauss.html">16. Gauss Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inversion.html">17. Matrix Inversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Running_Time_Analysis.html">18. Running Time Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reading.html">19. Reading for Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Hobo_Student.html">20. Hobo Data, Student Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ML_Book_Club.html">21. ML Book Club</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Student.html">22. Poisoned Mushroom Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html">23. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html#exercises">24. Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinates.html">26. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA%20Matrices.html">27. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA.html">28. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="picture.html">29. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Cancer_Logistic_Student.html">30. Cancer Data Logistic Regression (Student)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What Is?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy.html">31. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2_Student.html">32. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw02.html">33. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Bayes.html">34. The Bayes Error Rate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Weather.html">35. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/weather-teacher.html">36. Cloudy Days in Leesburg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7. </span>Linear Regression</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/lessons/Linear_regression_derivation.md" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
+<h1><span class="section-number">7. </span>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading"></a></h1>
+<p>Given <span class="math notranslate nohighlight">\(n\)</span> points <span class="math notranslate nohighlight">\(\left(x_{1}, y_{1}\right) \ldots\left(x_{n}, y_{n}\right)\)</span>
+and an assumed relation <span class="math notranslate nohighlight">\(y=f(x)+\epsilon, \epsilon \sim N(\mu, \sigma)\)</span>
+we want to find a model <span class="math notranslate nohighlight">\(\tilde{y_i}=a x_i+b\)</span>
+such that the residual squared error</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{RSS}(a, b)=\sum_{i=1}^n \left(\tilde{y}_{i}-y_{i}\right)^{2}
+\]</div>
+<p>is minimized.</p>
+<p><span class="math notranslate nohighlight">\(RSS\)</span> is a function of the line parameters <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. To minimize
+it we set both partial derivatives to zero. (This could technically
+find a maximum – but it’s reasonably clear this function has no maximum value because the error can always be increased.)</p>
+<p>Take partial derivatives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\partial RSS}{\partial a} &amp; =2 \sum\left(\tilde{y}_{c}-y_{i}\right) \frac{\partial}{\partial a}\left(\tilde{y}_{i}-y_{i}\right) \\
+&amp; =2 \sum\left(\tilde{y}_{i}-y_{i}\right)\left(x_{i}\right) \\
+\frac{\partial R S S}{\partial b} &amp; =2 \sum\left(\tilde{y}_{i}-y_{i}\right)\frac{\partial}{\partial b}\left(\tilde{y}_{i}-y_{i}\right) \\
+&amp; =2 \sum\left(\tilde{y}_{i}-y_{i}\right)(1)
+\end{aligned}
+\end{split}\]</div>
+<p>Since</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial a} \tilde{y}_{i}=\frac{\partial}{\partial a}\left(a x_{i}+b\right)=x_{i}\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial}{\partial b} \tilde{y}_{c}=\frac{\partial}{\partial b}\left(a x_{c}+b\right)=1
+\]</div>
+<p>And solve</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{l}\dfrac{\partial R S S}{\partial a}=0 \\[20pt] \dfrac{\partial R S S}{\partial b}=0\end{array} \Rightarrow\left\{\begin{array}{l}\left.\sum (\tilde{y}_{i}-y_{i}\right) x_{i}=0 \\[10pt] \sum\left(\tilde{y}_{i}-y_{i}\right)=0\end{array}\right.\right.\end{split}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\tilde{y}_{i} = ax_i+b\)</span>
+$<span class="math notranslate nohighlight">\(\sum\left(a x_{i}+b-y_{i}\right) x_{i}=0 \Rightarrow a \sum x_{i}^{2}+b \sum x_{i}=\sum y_{i} x_{j}\)</span><span class="math notranslate nohighlight">\(
+and
+\)</span><span class="math notranslate nohighlight">\(\sum\left(a x_{i}+b-{y}_{i}\right)=0 \Rightarrow a \sum x_{i}+b \sum 1=\sum y_{i}\)</span>$</p>
+<p>by Cramer’s rule</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+a &amp; =\left|\begin{array}{ll}
+\sum x_{i} y_{i} &amp; \sum x_{i} \\
+\sum y_{i} &amp; n
+\end{array}\right| /\left|\begin{array}{ll}
+\sum x_{i}^{2} &amp; \sum x_{i} \\
+\sum x_{i} &amp; n
+\end{array}\right| \\
+b &amp; =\left|\begin{array}{ll}
+\sum x_{i}^{2} &amp; \sum x_{i} y_{i} \\
+\sum x_{i} &amp; \sum y_{i}
+\end{array}\right| /\left|\begin{array}{ll}
+\sum x_{i}^{2} &amp; \sum x_{i} \\
+\sum x_{i} &amp; n
+\end{array}\right|
+\end{aligned}
+\end{split}\]</div>
+<p>since <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} 1=n\)</span></p>
+<p>Taking determinants,
+$<span class="math notranslate nohighlight">\(a=\frac{n \sum x_{i} y_{i}-\left(\sum x_{i}\right)\left(\sum y_{i}\right)}{n \sum x_{i}^{2}-\left(\sum x_{i}\right)^{2}}\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+b=\frac{\sum y_{i} \sum x_{i}^{2}-\sum x_{i} \sum x_{i} y_{i}}{n \sum x_{i}^{2}-\left(\sum x_{i}\right)^{2}}
+\]</div>
+<section id="interpretation-as-a-ratio-of-variances">
+<h2><span class="section-number">7.1. </span>Interpretation as a ratio of variances<a class="headerlink" href="#interpretation-as-a-ratio-of-variances" title="Link to this heading"></a></h2>
+<p>Students of statistics may appreciate the following manipulations</p>
+<p><em>Definition</em> of covariance
+$<span class="math notranslate nohighlight">\(E(x y)-E(x) E(y)=\operatorname{Cov}(x, y)\)</span>$</p>
+<p><em>Definition</em> of variance</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{Var}(x)=E\left[(x-\mu)^{2}\right]\]</div>
+<p><em>Lemma</em></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Var}(x)&amp;=E\left[(x-\mu)^{2}\right] \\
+&amp;=E\left(x^{2}\right)-2 \mu E[x]+E[\mu]^{2} \\
+&amp;=E\left[x^{2}\right]-2 E[x]^{2}+\mu^{2} \\
+&amp;=E\left[x^{2}\right]-E[x]^{2}
+\end{aligned}
+\end{split}\]</div>
+<p>Manipulating the denominator of the equation for <span class="math notranslate nohighlight">\(a\)</span> on the previous page,
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+n \sum x_{i}^{2}-\left(\sum x_{i}\right)^{2} &amp; =n^{2}\left(\frac{1}{n} \sum x_{i}^{2}-\left(\frac{\sum x_{i}}{n}\right)^{2}\right) \\
+&amp; =n^{2}\left(E\left[x^{2}\right]-E[x]^{2}\right) \\
+&amp; =n^{2} \operatorname{Var}(x)
+\end{aligned}
+\)</span>$</p>
+<p>And the numerator
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+n \sum x_{i} y_{i}-\sum x_{i} \sum y_{i} \\
+&amp; =n^{2}\left(\frac{1}{n} \sum x_{i} y_{i}-\frac{1}{n} \sum x_{i} \cdot\frac1n \sum y_{i}\right) \\
+&amp; =n^{2}\left(E\left[x y\right]-E[x] E[y]\right) \\
+&amp; =n^{2}\left(E[x y]-\mu_{y} \mu_{y}\right) \\
+&amp; = n^2 \operatorname{Cov}(x,y)
+\end{aligned}
+\)</span>$</p>
+<p>so</p>
+<div class="math notranslate nohighlight">
+\[a=\frac{E[x y]-\mu_{x} \mu_{y}}{E[x]-\mu_{x}^{2}}=\frac{\operatorname{Cov}(x, y)}{\operatorname{Vav}(x)}\]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="jupyter-python-intro.html" class="btn btn-neutral float-left" title="6. Quick Jupyter Intro and Python Loops" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="notebooks/Least_Squares.html" class="btn btn-neutral float-right" title="8. Linear Least Squares" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

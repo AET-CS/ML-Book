@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>26. Coordinate Transformations &mdash; Machine Learning for Research</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="27. S2 = S.copy()" href="notebooks/PCA%20Matrices.html" />
+    <link rel="prev" title="25. Life Expectancy – Normalization, Regularization, Feature Selection" href="notebooks/Life_Part_2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../intro.html" class="icon icon-home">
+            Project name not set
+              <img src="../_static/ML-logo-1.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hw01.html">1. Homework 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw02.html">2. Exploring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsl.html">3. Fixing WSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw03.html">4. August 28</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Bayes_Theorem_Student.html">5. Bayes’ Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-python-intro.html">6. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linear_regression_derivation.html">7. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Least_Squares.html">8. Linear Least Squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Correlation_Coefficient.html">9. Correlation Coefficient</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linear Algebra in Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Student.html">10. Linear Algebra and Python Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Intro_to_Matrices_in_NumPy.html">11. Introduction to Matrices in NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Index_Warmup_Student.html">12. Matrix indices warmup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Gaussian_Elimination_Student.html">13. Gaussian Elimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/LogLogRegression.html">14. Log-Log Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Strassen-Lab.html">15. Strassen’s Algorithm (Optional Extension)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gauss.html">16. Gauss Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inversion.html">17. Matrix Inversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Running_Time_Analysis.html">18. Running Time Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reading.html">19. Reading for Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Hobo_Student.html">20. Hobo Data, Student Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ML_Book_Club.html">21. ML Book Club</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Student.html">22. Poisoned Mushroom Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html">23. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html#exercises">24. Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">26. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA%20Matrices.html">27. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA.html">28. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="picture.html">29. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Cancer_Logistic_Student.html">30. Cancer Data Logistic Regression (Student)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What Is?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy.html">31. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2_Student.html">32. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw02.html">33. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Bayes.html">34. The Bayes Error Rate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Weather.html">35. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/weather-teacher.html">36. Cloudy Days in Leesburg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">26. </span>Coordinate Transformations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/lessons/coordinates.md" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="coordinate-transformations">
+<h1><span class="section-number">26. </span>Coordinate Transformations<a class="headerlink" href="#coordinate-transformations" title="Link to this heading"></a></h1>
+<p>In physics it is common to solve a problem by first transforming the underlying coordinate system. The motion of the moon in the Solar System is somewhat complex in a coordinate system with the sun at the origian; it is much simpler with the Earth at the origin. And simpler still with the Moon at the origin!</p>
+<section id="part-1-coordinate-transformations">
+<h2><span class="section-number">26.1. </span>Part 1: Coordinate Transformations<a class="headerlink" href="#part-1-coordinate-transformations" title="Link to this heading"></a></h2>
+<p>Given a set of axis <span class="math notranslate nohighlight">\(x,y\)</span> which you may consider as the “standard” axis, superimpose a new set of orthogonal axes defined by the vectors <span class="math notranslate nohighlight">\({\bf u} = \langle 2,1 \rangle\)</span> and <span class="math notranslate nohighlight">\({\bf v} = \langle -1,2\rangle\)</span></p>
+<ol class="arabic simple">
+<li><p>Verify that the new axes are orthogonal</p></li>
+<li><p>Draw the axes on a Cartesian plane</p></li>
+</ol>
+<p>Points on the plane can now be identified by two separate coordinates: those in the <span class="math notranslate nohighlight">\(xy\)</span> plane and those in the <span class="math notranslate nohighlight">\(uv\)</span> plane. Given the points below in <span class="math notranslate nohighlight">\(uv\)</span> coordinates, determine their <span class="math notranslate nohighlight">\(xy\)</span> coordinates. You can solve these by graphing, but if you think about how coordinates work you can pretty easily ‘math’ the answer.</p>
+<ol class="arabic simple">
+<li><p>(0,0)</p></li>
+<li><p>(1,1)</p></li>
+<li><p>(3,1)</p></li>
+<li><p>(-2,2)</p></li>
+</ol>
+<p><img alt="Cartesian Graph" src="../_images/graph-10x10.png" />{ width=75% }</p>
+<p>If you realized the computational way to solve the above problem, try to encapsulate your algorithm succinctly as a <em>matrix equation</em>.  Spend some time on this before movin on</p>
+</section>
+<section id="part-2-inverse-transformations">
+<h2><span class="section-number">26.2. </span>Part 2: Inverse Transformations<a class="headerlink" href="#part-2-inverse-transformations" title="Link to this heading"></a></h2>
+<p>The following 3 coordinates are in <span class="math notranslate nohighlight">\(xy\)</span> space. Can you find their <span class="math notranslate nohighlight">\(uv\)</span> coordinates? (Complete understanding of the previous section will render this exercise academic).</p>
+<ol class="arabic simple">
+<li><p>(5,5)</p></li>
+<li><p>(-1,-3)</p></li>
+<li><p>(-2,4)</p></li>
+</ol>
+<p>Describe the mathematical way to find these answers.</p>
+<p>In conclusion we have seen that matrices can be used to transform vectors between two related coordinate systems.</p>
+</section>
+<section id="part-3-linear-transformations">
+<h2><span class="section-number">26.3. </span>Part 3: Linear Transformations<a class="headerlink" href="#part-3-linear-transformations" title="Link to this heading"></a></h2>
+<p>Another way to interpret the action of a matrix on a vector is to say that the matrix transforms the vector from one place in the place to another. If we consider the action of the matrix on every point in the plane, we can say that it provides a transformation of the plane into itself. By consider the action of the matrix on a few points in the place we can understand its action on the entire place. You will create a Jupyter notebook to explore this phenomenon.</p>
+<ol class="arabic simple">
+<li><p>Create a new notebook named “Coordinate_Transformations.ipynb”</p></li>
+<li><p>Define a transformation matrix <span class="math notranslate nohighlight">\(M \in \mathbb{R}^{2 \times 2}\)</span>. You may want to use the one from part 1.</p></li>
+<li><p>Define a set of 100 points lying on the edge of the unit circle.</p></li>
+<li><p>Plot the points on a plane with a dashed line, and with helpful gridlines shown and a title.</p></li>
+<li><p>Now transform all the points by the matrix <span class="math notranslate nohighlight">\(M\)</span>: <span class="math notranslate nohighlight">\(p_2 = M{p_1}\)</span>.</p></li>
+<li><p>Plot the new set of points <span class="math notranslate nohighlight">\(p_2\)</span> and describe what you see in a markdown cell in your notebook.</p></li>
+<li><p>Try a few matrices M. Maybe even pick random uniform matrices. After a few trials, record your conclusions in a second markdown cell. In
+what ways does <span class="math notranslate nohighlight">\(M\)</span> affect the image <span class="math notranslate nohighlight">\(Mx\)</span> for a set of <span class="math notranslate nohighlight">\(x\)</span> on the unit circle?</p></li>
+</ol>
+<p>Now let’s look at the Singular Value Decomposition. The SVD decomposes (factors) <span class="math notranslate nohighlight">\(M\)</span> into <span class="math notranslate nohighlight">\(M = U \Sigma V^T\)</span> where <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are
+orthonormal (determinant one and their transpose is their inverse) and <span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix.</p>
+<ol class="arabic simple">
+<li><p>Start with a symmetric matrix <span class="math notranslate nohighlight">\(M = M^T\)</span>.</p></li>
+<li><p>Graph the effect of <span class="math notranslate nohighlight">\(M\)</span> on the unit circle. (Pick a different <span class="math notranslate nohighlight">\(M\)</span> if this one is uninteresting).</p></li>
+<li><p>Find the SVD of <span class="math notranslate nohighlight">\(M\)</span> using <code class="docutils literal notranslate"><span class="pre">U,S,VT</span> <span class="pre">=</span> <span class="pre">numpy.linalg.svd</span></code></p></li>
+<li><p>Plot the columns of <span class="math notranslate nohighlight">\(VT\)</span> as vectors on the same plot with the ellipse you made in part 2. (Use the <code class="docutils literal notranslate"><span class="pre">quiver</span></code> function in pyplot for this)</p></li>
+<li><p>Describe what you see in a markdown cell. See if you can also discern the role of <span class="math notranslate nohighlight">\(\Sigma\)</span>.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notebooks/Life_Part_2.html" class="btn btn-neutral float-left" title="25. Life Expectancy – Normalization, Regularization, Feature Selection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="notebooks/PCA%20Matrices.html" class="btn btn-neutral float-right" title="27. S2 = S.copy()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

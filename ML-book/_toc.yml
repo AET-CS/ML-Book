@@ -1,0 +1,63 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+options:
+  numbers: True
+parts:
+- caption: Setup
+  numbered: true
+  chapters:
+  - file: lessons/hw01
+  - file: lessons/hw02
+  - file: lessons/wsl
+  - file: lessons/cw03
+- caption: Measures of Closeness
+  numbered: true
+  chapters:
+  - file: lessons/notebooks/Bayes_Theorem_Student
+  - file: lessons/jupyter-python-intro
+  - file: lessons/Linear_regression_derivation
+  - file: lessons/notebooks/Least_Squares
+  - file: lessons/Correlation_Coefficient
+- caption: Linear Algebra in Python
+  numbered: true
+  chapters:
+  - file: lessons/notebooks/Matrices_Student
+  - file: lessons/notebooks/Intro_to_Matrices_in_NumPy
+  - file: lessons/notebooks/Matrices_Index_Warmup_Student
+  - file: lessons/notebooks/Gaussian_Elimination_Student
+  - file: lessons/notebooks/LogLogRegression
+  - file: lessons/Strassen-Lab
+  - file: lessons/Gauss
+  - file: lessons/inversion
+  - file: lessons/notebooks/Running_Time_Analysis
+- caption: Next Steps
+  numbered: True
+  chapters:
+  - file: lessons/reading
+  - file: lessons/notebooks/Hobo_Student
+  - file: lessons/ML_Book_Club
+  - file: lessons/notebooks/Mushroom_Student
+
+- caption: Regression
+  numbered: true
+  chapters:
+  - file: lessons/notebooks/Life_Expectancy_Student
+  - file: lessons/notebooks/Life_Part_2
+  - file: lessons/coordinates
+  - file: lessons/notebooks/PCA Matrices
+  - file: lessons/notebooks/PCA
+  - file: lessons/picture
+  - file: lessons/notebooks/Cancer_Logistic_Student
+
+- caption: What Is?
+  numbered: True
+  chapters:
+  - file: lessons/notebooks/Life_Expectancy
+  - file: lessons/notebooks/Life_Part_2_Student
+  - file: lessons/cw02
+  - file: lessons/notebooks/Mushroom_Bayes
+  - file: lessons/notebooks/Weather
+  - file: lessons/notebooks/weather-teacher

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8. Linear Least Squares &mdash; Machine Learning for Research</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="9. Correlation Coefficient" href="../Correlation_Coefficient.html" />
+    <link rel="prev" title="7. Linear Regression" href="../Linear_regression_derivation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../intro.html" class="icon icon-home">
+            Project name not set
+              <img src="../../_static/ML-logo-1.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hw01.html">1. Homework 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hw02.html">2. Exploring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wsl.html">3. Fixing WSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw03.html">4. August 28</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Bayes_Theorem_Student.html">5. Bayes’ Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter-python-intro.html">6. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Linear_regression_derivation.html">7. Linear Regression</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Linear Least Squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Correlation_Coefficient.html">9. Correlation Coefficient</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linear Algebra in Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Matrices_Student.html">10. Linear Algebra and Python Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_to_Matrices_in_NumPy.html">11. Introduction to Matrices in NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matrices_Index_Warmup_Student.html">12. Matrix indices warmup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gaussian_Elimination_Student.html">13. Gaussian Elimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogLogRegression.html">14. Log-Log Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Strassen-Lab.html">15. Strassen’s Algorithm (Optional Extension)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Gauss.html">16. Gauss Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inversion.html">17. Matrix Inversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running_Time_Analysis.html">18. Running Time Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reading.html">19. Reading for Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hobo_Student.html">20. Hobo Data, Student Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_Book_Club.html">21. ML Book Club</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Student.html">22. Poisoned Mushroom Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">23. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html#exercises">24. Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">26. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">27. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">28. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../picture.html">29. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">30. Cancer Data Logistic Regression (Student)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What Is?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">31. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">32. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw02.html">33. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">34. The Bayes Error Rate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Weather.html">35. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">36. Cloudy Days in Leesburg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8. </span>Linear Least Squares</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/lessons/notebooks/Least_Squares.ipynb" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-least-squares">
+<h1><span class="section-number">8. </span>Linear Least Squares<a class="headerlink" href="#linear-least-squares" title="Link to this heading"></a></h1>
+<p>In class we derived the formula for linear least squares of one variable. In this notebook you will learn a bit of the numerical library numpy, use numpy to compute linear regression, and then compute it yourself using formulas from class</p>
+<p>Begin by running the cell below. Then go back and carefully read through all the code. There is a lot of new stuff here. Note how to create numpy arrays/matrices and how to compute a linear least squares regression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Step 1: Prepare your data</span>
+<span class="c1"># x: Independent variable (input)</span>
+<span class="c1"># y: Dependent variable (output)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="c1"># Step 2: Perform linear regression using the least squares method</span>
+
+<span class="c1"># Add a column of ones to the input data for the intercept (bias term)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># Calculate the slope (m) and intercept (b)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slope (a): </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intercept (b): </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Step 3: Predict y values using the regression line</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="c1"># Optional: Plot the data and the regression line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regression line&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="an-aside-about-numpy-matrices">
+<h2><span class="section-number">8.1. </span>An aside about numpy matrices<a class="headerlink" href="#an-aside-about-numpy-matrices" title="Link to this heading"></a></h2>
+<p>What happened to x? Here’s the original <span class="math notranslate nohighlight">\(x\)</span>, which is an array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We add a row of 1s after it and take the transpose to get the input matrix <span class="math notranslate nohighlight">\(X\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Breaking this down into pieces, first let’s make a python list that contains <span class="math notranslate nohighlight">\(x\)</span> and an array of ones</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s use numpy to make a vertical stack. The first element in the list becomes the first row</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now take the transpose</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="practice-with-matrices">
+<h3><span class="section-number">8.1.1. </span>Practice with matrices<a class="headerlink" href="#practice-with-matrices" title="Link to this heading"></a></h3>
+<p>Make a numpy matrix that is a row of 5 zeros followed by a row of 5 ones, then 5 zeros, then 5 ones again. Use built in functions and <code class="docutils literal notranslate"><span class="pre">vstack</span></code> (don’t just type a bunch of 0 and 1 – can you guess the name of a function that makes an array of zeros?)</p>
+<p>Now make a similar matrix that is a row of all 1s followed by all 2s in the second row, then 3s then 4s. Again use built in function <code class="docutils literal notranslate"><span class="pre">np.ones</span></code>. Name this matrix <code class="docutils literal notranslate"><span class="pre">M</span></code>. Hint: <span class="math notranslate nohighlight">\([2,2,2,2,2] = 2\cdot[1,1,1,1,1]\)</span></p>
+<p>compute M times M transpose and M transpose times M (<span class="math notranslate nohighlight">\(MM^T\)</span> and <span class="math notranslate nohighlight">\(M^TM\)</span>). In <code class="docutils literal notranslate"><span class="pre">numpy</span></code> <span class="math notranslate nohighlight">\(AB\)</span> can be computed with <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">B</span></code> for matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code></p>
+<p>A matrix <span class="math notranslate nohighlight">\(M\)</span> is <em>symmetric</em> if <span class="math notranslate nohighlight">\(M = M^T\)</span>. This also implies <span class="math notranslate nohighlight">\(M_{ij} = M_{ji}\)</span> for all indices <span class="math notranslate nohighlight">\((i,j)\)</span>. Write a python function <code class="docutils literal notranslate"><span class="pre">is_symmetric(M)</span></code> which returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if and only if <span class="math notranslate nohighlight">\(M\)</span> is symmetric</p>
+<p>Test your function. Make a 5 by 5 random integer matrix (see <code class="docutils literal notranslate"><span class="pre">np.random.randint</span></code>) called <span class="math notranslate nohighlight">\(M\)</span>. It is a fact that <span class="math notranslate nohighlight">\(MM^T\)</span> is always symmetric. Check that your function return <code class="docutils literal notranslate"><span class="pre">true</span></code> for <span class="math notranslate nohighlight">\(MM^T\)</span> and <code class="docutils literal notranslate"><span class="pre">false</span></code> for <span class="math notranslate nohighlight">\(M\)</span>. Repeat this trial 100 times and verify all 100 are correct.</p>
+</section>
+</section>
+<section id="linear-least-squares-regression">
+<h2><span class="section-number">8.2. </span>Linear Least Squares Regression<a class="headerlink" href="#linear-least-squares-regression" title="Link to this heading"></a></h2>
+<p>You can create a vector of normally distributed samples with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> by using the numpy function <code class="docutils literal notranslate"><span class="pre">np.random.normal(mu,</span> <span class="pre">sigma,</span> <span class="pre">n)</span></code>. Try creating a vector with 10 random samples, with a mean of 100 and a standard deviation of 5.</p>
+<p>Now create some data for linear regression. Make a vector <span class="math notranslate nohighlight">\(x\)</span> of ints over the range <span class="math notranslate nohighlight">\([0,9]\)</span> and let <span class="math notranslate nohighlight">\(y\)</span> be a linear function of <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y = 3x+2+\epsilon(x)\)</span> where <span class="math notranslate nohighlight">\(\epsilon(x)\)</span> is a random Gaussian noise function <span class="math notranslate nohighlight">\(\epsilon(x) \sim N(0,1)\)</span>. Make a scatter plot of <span class="math notranslate nohighlight">\(y\)</span> vs. <span class="math notranslate nohighlight">\(x\)</span> and label it</p>
+<p>Compute the correct linear regression coefficients using numpy as above. Check they are resonable.</p>
+<p>Now compute the regression coefficients using the formulas from class. Begin by defining some very helpful variables: <code class="docutils literal notranslate"><span class="pre">Sx,</span> <span class="pre">Sy</span></code> will be <span class="math notranslate nohighlight">\(\sum_i {x_i}\)</span> and <span class="math notranslate nohighlight">\(\sum_i {y_i}\)</span> respectively. Next <code class="docutils literal notranslate"><span class="pre">Sxx</span></code> and <code class="docutils literal notranslate"><span class="pre">Syy</span></code> are the sum of squares: <span class="math notranslate nohighlight">\(\sum_i {x_i}^2\)</span> and <span class="math notranslate nohighlight">\(\sum_i {y_i}^2\)</span>. Finally the inner product <code class="docutils literal notranslate"><span class="pre">Sxy</span></code> = <span class="math notranslate nohighlight">\(\sum_i x_iy_i\)</span>. The quickest way to do this involves using comprehensions and the <code class="docutils literal notranslate"><span class="pre">sum</span></code> function, but you can use loops for now if you need to.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print your results</span>
+<span class="n">Sx</span><span class="p">,</span> <span class="n">Sy</span><span class="p">,</span> <span class="n">Sxx</span><span class="p">,</span> <span class="n">Syy</span><span class="p">,</span> <span class="n">Sxy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally determine <span class="math notranslate nohighlight">\(a,b\)</span> as in class. Display the absolute errors between your calculations and the ones numpy returned. (They should be close to machine precision, which is <span class="math notranslate nohighlight">\(10^{-15}\)</span> give or take.</p>
+</section>
+<section id="least-squares-function">
+<h2><span class="section-number">8.3. </span>Least squares function<a class="headerlink" href="#least-squares-function" title="Link to this heading"></a></h2>
+<p>Did you know python can return two values? Here’s an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">two_numbers</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">two_numbers</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">linear_least_squares(x,y)</span></code> which takes input vectors x,y and returns a,b as above. (</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_least_squares</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="application">
+<h2><span class="section-number">8.4. </span>Application<a class="headerlink" href="#application" title="Link to this heading"></a></h2>
+<p>Now, using <span class="math notranslate nohighlight">\(a=5, b =-15\)</span>, run linear least squares 100 times on 100 vector pairs <span class="math notranslate nohighlight">\((x,y)\)</span>, where each of the 100 <span class="math notranslate nohighlight">\(x\)</span> are the same but the <span class="math notranslate nohighlight">\(y=ax+b+\epsilon\)</span> each have different amounts of Gaussian noise.  Plot the resulting best fit lines all on the same graph.</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> to make your input vector <span class="math notranslate nohighlight">\(x\)</span> cover the domain <span class="math notranslate nohighlight">\([-5,5]\)</span> with a step-size of 0.01</p></li>
+<li><p>Create arrays to store all the computed a and b values (you’ll use this later)</p></li>
+<li><p>If you call <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> in a loop, it will keep adding to the same plot</p></li>
+<li><p>Give your plot a title!</p></li>
+</ul>
+<p>Determine the average of the <span class="math notranslate nohighlight">\(a\)</span>s and <span class="math notranslate nohighlight">\(b\)</span>s returned above. Compare these to the true <span class="math notranslate nohighlight">\(a,b\)</span>. Explain your result.(There is an <code class="docutils literal notranslate"><span class="pre">np.mean</span></code> function)</p>
+<p>Make two histogram plots of the calculated <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> values <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> works nicely and adding a semicolon suppressed the nasty text output (you’ll see)</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lessons/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Linear_regression_derivation.html" class="btn btn-neutral float-left" title="7. Linear Regression" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Correlation_Coefficient.html" class="btn btn-neutral float-right" title="9. Correlation Coefficient" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
