@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Jupyter Book">
+  <title>Interactive Jupyter Book</title>
+  <link rel="stylesheet" href="_static/css/pygments.css">
+  <link rel="stylesheet" href="_static/css/theme.css">
+  <link rel="stylesheet" href="_static/css/custom.css">
+
+  <!-- Thebe integration -->
+  <script src="https://unpkg.com/thebe@latest"></script>
+  <script>
+    window.addEventListener("load", function() {
+      thebe.init();
+    });
+  </script>
+
+  <!-- Additional configuration for styling and interactivity -->
+  <style>
+    /* Optional: Make code cells more interactive and visually distinct */
+    .cell {
+      margin-bottom: 20px;
+    }
+    .input_area {
+      background-color: #f5f5f5; /* Lighter background for input area */
+    }
+    .output_area {
+      background-color: #eef9f1; /* Light green background for output */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Interactive Jupyter Book</h1>
+    <p>This book is powered by Jupyter Book and Thebe for interactive coding!</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Example Code Cell</h2>
+      <p>Try running the code below using Thebe:</p>
+      <div class="cell_input">
+        <pre><code class="language-python">
+# Example Python code
+import numpy as np
+
+# Create a random matrix
+matrix = np.random.rand(3, 3)
+print(matrix)
+        </code></pre>
+      </div>
+      <div class="cell_output"></div>
+    </section>
+
+    <section>
+      <h2>Interactive Notebook</h2>
+      <p>Click the "Run" button on any code cell to execute it in the browser!</p>
+      <div class="thebe-button-container">
+        <button class="thebe-button">Run Code</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Jupyter Book with Thebe integration</p>
+  </footer>
+
+  <!-- Required JavaScript -->
+  <script src="_static/js/theme.js"></script>
+  <script src="_static/js/pygments.js"></script>
+</body>
+</html>
