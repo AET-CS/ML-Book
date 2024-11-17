@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>22. Poisoned Mushroom Dataset &mdash; Machine Learning for Research</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="23. Life Expectancy" href="Life_Expectancy_Student.html" />
+    <link rel="prev" title="21. ML Book Club" href="../ML_Book_Club.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../intro.html" class="icon icon-home">
+            Project name not set
+              <img src="../../_static/ML-logo-1.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hw01.html">1. Homework 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hw02.html">2. Exploring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wsl.html">3. Fixing WSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw03.html">4. August 28</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Bayes_Theorem_Student.html">5. Bayes’ Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter-python-intro.html">6. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Linear_regression_derivation.html">7. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Least_Squares.html">8. Linear Least Squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Correlation_Coefficient.html">9. Correlation Coefficient</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linear Algebra in Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Matrices_Student.html">10. Linear Algebra and Python Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_to_Matrices_in_NumPy.html">11. Introduction to Matrices in NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matrices_Index_Warmup_Student.html">12. Matrix indices warmup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gaussian_Elimination_Student.html">13. Gaussian Elimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogLogRegression.html">14. Log-Log Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Strassen-Lab.html">15. Strassen’s Algorithm (Optional Extension)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Gauss.html">16. Gauss Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inversion.html">17. Matrix Inversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running_Time_Analysis.html">18. Running Time Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../reading.html">19. Reading for Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hobo_Student.html">20. Hobo Data, Student Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ML_Book_Club.html">21. ML Book Club</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">22. Poisoned Mushroom Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">23. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html#exercises">24. Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">26. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">27. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">28. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../picture.html">29. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">30. Cancer Data Logistic Regression (Student)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What Is?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">31. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">32. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw02.html">33. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">34. The Bayes Error Rate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Weather.html">35. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">36. Cloudy Days in Leesburg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">22. </span>Poisoned Mushroom Dataset</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/lessons/notebooks/Mushroom_Student.ipynb" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="poisoned-mushroom-dataset">
+<h1><span class="section-number">22. </span>Poisoned Mushroom Dataset<a class="headerlink" href="#poisoned-mushroom-dataset" title="Link to this heading"></a></h1>
+<p>We are going to take a quick tour of machine learning by working on an example dataset. The mushroom dataset
+categorizes mushrooms as ‘poisonous’ or ‘edible’ and collects several descriptive properties of each mushroom example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="loading-the-dataset">
+<h2><span class="section-number">22.1. </span>Loading the dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These lines would load the data locally</span>
+<span class="c1"># data_root = &quot;./&quot;</span>
+<span class="c1"># filename = &quot;mushroom.csv&quot;</span>
+<span class="c1"># filepath = os.path.join(data_root, filename)</span>
+
+<span class="c1"># We&#39;ll fetch it directly from the web</span>
+<span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;https://aet-cs.github.io/white/ML/lessons/mushroom.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class</th>
+      <th>cap-shape</th>
+      <th>cap-surface</th>
+      <th>cap-color</th>
+      <th>ruises</th>
+      <th>odor</th>
+      <th>gill-attachment</th>
+      <th>gill-spacing</th>
+      <th>gill-size</th>
+      <th>gill-color</th>
+      <th>...</th>
+      <th>stalk-surface-below-ring</th>
+      <th>stalk-color-above-ring</th>
+      <th>stalk-color-below-ring</th>
+      <th>veil-type</th>
+      <th>veil-color</th>
+      <th>ring-number</th>
+      <th>ring-type</th>
+      <th>spore-print-color</th>
+      <th>population</th>
+      <th>habitat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>e</td>
+      <td>x</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>w</td>
+      <td>n</td>
+      <td>b</td>
+      <td>...</td>
+      <td>y</td>
+      <td>w</td>
+      <td>p</td>
+      <td>NaN</td>
+      <td>n</td>
+      <td>o</td>
+      <td>p</td>
+      <td>w</td>
+      <td>v</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>p</td>
+      <td>NaN</td>
+      <td>y</td>
+      <td>g</td>
+      <td>t</td>
+      <td>NaN</td>
+      <td>f</td>
+      <td>c</td>
+      <td>b</td>
+      <td>k</td>
+      <td>...</td>
+      <td>s</td>
+      <td>n</td>
+      <td>c</td>
+      <td>p</td>
+      <td>w</td>
+      <td>n</td>
+      <td>e</td>
+      <td>NaN</td>
+      <td>y</td>
+      <td>g</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>e</td>
+      <td>b</td>
+      <td>y</td>
+      <td>n</td>
+      <td>t</td>
+      <td>n</td>
+      <td>f</td>
+      <td>c</td>
+      <td>NaN</td>
+      <td>n</td>
+      <td>...</td>
+      <td>s</td>
+      <td>p</td>
+      <td>NaN</td>
+      <td>p</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>b</td>
+      <td>y</td>
+      <td>w</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>e</td>
+      <td>x</td>
+      <td>g</td>
+      <td>g</td>
+      <td>t</td>
+      <td>n</td>
+      <td>f</td>
+      <td>w</td>
+      <td>b</td>
+      <td>n</td>
+      <td>...</td>
+      <td>s</td>
+      <td>p</td>
+      <td>NaN</td>
+      <td>p</td>
+      <td>w</td>
+      <td>n</td>
+      <td>n</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>e</td>
+      <td>NaN</td>
+      <td>f</td>
+      <td>NaN</td>
+      <td>t</td>
+      <td>n</td>
+      <td>a</td>
+      <td>w</td>
+      <td>n</td>
+      <td>n</td>
+      <td>...</td>
+      <td>k</td>
+      <td>NaN</td>
+      <td>w</td>
+      <td>p</td>
+      <td>w</td>
+      <td>NaN</td>
+      <td>l</td>
+      <td>w</td>
+      <td>v</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>25981</th>
+      <td>e</td>
+      <td>f</td>
+      <td>NaN</td>
+      <td>r</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>NaN</td>
+      <td>n</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>n</td>
+      <td>p</td>
+      <td>p</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>k</td>
+      <td>v</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25982</th>
+      <td>e</td>
+      <td>f</td>
+      <td>s</td>
+      <td>e</td>
+      <td>f</td>
+      <td>NaN</td>
+      <td>f</td>
+      <td>c</td>
+      <td>n</td>
+      <td>y</td>
+      <td>...</td>
+      <td>y</td>
+      <td>w</td>
+      <td>p</td>
+      <td>p</td>
+      <td>w</td>
+      <td>NaN</td>
+      <td>p</td>
+      <td>r</td>
+      <td>y</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>25983</th>
+      <td>p</td>
+      <td>f</td>
+      <td>g</td>
+      <td>e</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>a</td>
+      <td>c</td>
+      <td>b</td>
+      <td>b</td>
+      <td>...</td>
+      <td>y</td>
+      <td>w</td>
+      <td>NaN</td>
+      <td>p</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>h</td>
+      <td>v</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>25984</th>
+      <td>e</td>
+      <td>x</td>
+      <td>g</td>
+      <td>g</td>
+      <td>t</td>
+      <td>n</td>
+      <td>f</td>
+      <td>w</td>
+      <td>b</td>
+      <td>h</td>
+      <td>...</td>
+      <td>f</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>p</td>
+      <td>w</td>
+      <td>t</td>
+      <td>e</td>
+      <td>NaN</td>
+      <td>s</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25985</th>
+      <td>e</td>
+      <td>b</td>
+      <td>y</td>
+      <td>y</td>
+      <td>t</td>
+      <td>l</td>
+      <td>f</td>
+      <td>c</td>
+      <td>b</td>
+      <td>y</td>
+      <td>...</td>
+      <td>k</td>
+      <td>g</td>
+      <td>o</td>
+      <td>p</td>
+      <td>w</td>
+      <td>o</td>
+      <td>l</td>
+      <td>k</td>
+      <td>s</td>
+      <td>g</td>
+    </tr>
+  </tbody>
+</table>
+<p>25986 rows × 23 columns</p>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">describe</span></code> gives a quick overview of each feature</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class</th>
+      <th>cap-shape</th>
+      <th>cap-surface</th>
+      <th>cap-color</th>
+      <th>ruises</th>
+      <th>odor</th>
+      <th>gill-attachment</th>
+      <th>gill-spacing</th>
+      <th>gill-size</th>
+      <th>gill-color</th>
+      <th>...</th>
+      <th>stalk-surface-below-ring</th>
+      <th>stalk-color-above-ring</th>
+      <th>stalk-color-below-ring</th>
+      <th>veil-type</th>
+      <th>veil-color</th>
+      <th>ring-number</th>
+      <th>ring-type</th>
+      <th>spore-print-color</th>
+      <th>population</th>
+      <th>habitat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25986</td>
+      <td>22513</td>
+      <td>22507</td>
+      <td>22527</td>
+      <td>22514</td>
+      <td>22536</td>
+      <td>22505</td>
+      <td>22587</td>
+      <td>22494</td>
+      <td>22418</td>
+      <td>...</td>
+      <td>22563</td>
+      <td>22413</td>
+      <td>22553</td>
+      <td>22489</td>
+      <td>22483</td>
+      <td>22497</td>
+      <td>22478</td>
+      <td>22493</td>
+      <td>22475</td>
+      <td>22502</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>2</td>
+      <td>6</td>
+      <td>4</td>
+      <td>10</td>
+      <td>2</td>
+      <td>9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>12</td>
+      <td>...</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
+      <td>5</td>
+      <td>9</td>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>e</td>
+      <td>x</td>
+      <td>y</td>
+      <td>n</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>c</td>
+      <td>b</td>
+      <td>b</td>
+      <td>...</td>
+      <td>s</td>
+      <td>w</td>
+      <td>w</td>
+      <td>p</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>w</td>
+      <td>v</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>14354</td>
+      <td>7674</td>
+      <td>7602</td>
+      <td>4810</td>
+      <td>12361</td>
+      <td>6986</td>
+      <td>17811</td>
+      <td>16092</td>
+      <td>13997</td>
+      <td>3679</td>
+      <td>...</td>
+      <td>10619</td>
+      <td>8580</td>
+      <td>8403</td>
+      <td>22489</td>
+      <td>15742</td>
+      <td>15713</td>
+      <td>8501</td>
+      <td>5085</td>
+      <td>8409</td>
+      <td>6573</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 23 columns</p>
+</div></div></div>
+</div>
+<p>All the features in this dataset are categorical, with between 2 and 12 categories. Except the curious <code class="docutils literal notranslate"><span class="pre">veil-type</span></code> which has only one value. Since <code class="docutils literal notranslate"><span class="pre">veil-type</span></code> has only one unique value, we’ll drop it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;veil-type&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-exploration">
+<h2><span class="section-number">22.2. </span>Data Exploration<a class="headerlink" href="#data-exploration" title="Link to this heading"></a></h2>
+<p>Show all the columns. Notice the target is the first column!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;class&#39;, &#39;cap-shape&#39;, &#39;cap-surface&#39;, &#39;cap-color&#39;, &#39;ruises&#39;, &#39;odor&#39;,
+       &#39;gill-attachment&#39;, &#39;gill-spacing&#39;, &#39;gill-size&#39;, &#39;gill-color&#39;,
+       &#39;stalk-shape&#39;, &#39;stalk-root&#39;, &#39;stalk-surface-above-ring&#39;,
+       &#39;stalk-surface-below-ring&#39;, &#39;stalk-color-above-ring&#39;,
+       &#39;stalk-color-below-ring&#39;, &#39;veil-color&#39;, &#39;ring-number&#39;, &#39;ring-type&#39;,
+       &#39;spore-print-color&#39;, &#39;population&#39;, &#39;habitat&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get the size of the dataframe. Shape returns (rows, cols)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25986, 22)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s peek at the target</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        e
+1        p
+2        e
+3        e
+4        e
+        ..
+25981    e
+25982    e
+25983    p
+25984    e
+25985    e
+Name: class, Length: 25986, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>This dataset has a LOT of “N/A” datapoints. One way to clean the data is to drop all affected rows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1327, 22)
+</pre></div>
+</div>
+</div>
+</div>
+<p>But this <em>significantly</em> reduces our dataset. Let’s instead use a data imputation strategy that fills the N/A with the <em>mode</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="n">c</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look at df again</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class</th>
+      <th>cap-shape</th>
+      <th>cap-surface</th>
+      <th>cap-color</th>
+      <th>ruises</th>
+      <th>odor</th>
+      <th>gill-attachment</th>
+      <th>gill-spacing</th>
+      <th>gill-size</th>
+      <th>gill-color</th>
+      <th>...</th>
+      <th>stalk-surface-above-ring</th>
+      <th>stalk-surface-below-ring</th>
+      <th>stalk-color-above-ring</th>
+      <th>stalk-color-below-ring</th>
+      <th>veil-color</th>
+      <th>ring-number</th>
+      <th>ring-type</th>
+      <th>spore-print-color</th>
+      <th>population</th>
+      <th>habitat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>e</td>
+      <td>x</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>w</td>
+      <td>n</td>
+      <td>b</td>
+      <td>...</td>
+      <td>s</td>
+      <td>y</td>
+      <td>w</td>
+      <td>p</td>
+      <td>n</td>
+      <td>o</td>
+      <td>p</td>
+      <td>w</td>
+      <td>v</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>p</td>
+      <td>x</td>
+      <td>y</td>
+      <td>g</td>
+      <td>t</td>
+      <td>n</td>
+      <td>f</td>
+      <td>c</td>
+      <td>b</td>
+      <td>k</td>
+      <td>...</td>
+      <td>f</td>
+      <td>s</td>
+      <td>n</td>
+      <td>c</td>
+      <td>w</td>
+      <td>n</td>
+      <td>e</td>
+      <td>w</td>
+      <td>y</td>
+      <td>g</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>e</td>
+      <td>b</td>
+      <td>y</td>
+      <td>n</td>
+      <td>t</td>
+      <td>n</td>
+      <td>f</td>
+      <td>c</td>
+      <td>b</td>
+      <td>n</td>
+      <td>...</td>
+      <td>s</td>
+      <td>s</td>
+      <td>p</td>
+      <td>w</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>b</td>
+      <td>y</td>
+      <td>w</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>e</td>
+      <td>x</td>
+      <td>g</td>
+      <td>g</td>
+      <td>t</td>
+      <td>n</td>
+      <td>f</td>
+      <td>w</td>
+      <td>b</td>
+      <td>n</td>
+      <td>...</td>
+      <td>s</td>
+      <td>s</td>
+      <td>p</td>
+      <td>w</td>
+      <td>w</td>
+      <td>n</td>
+      <td>n</td>
+      <td>w</td>
+      <td>v</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>e</td>
+      <td>x</td>
+      <td>f</td>
+      <td>n</td>
+      <td>t</td>
+      <td>n</td>
+      <td>a</td>
+      <td>w</td>
+      <td>n</td>
+      <td>n</td>
+      <td>...</td>
+      <td>s</td>
+      <td>k</td>
+      <td>w</td>
+      <td>w</td>
+      <td>w</td>
+      <td>o</td>
+      <td>l</td>
+      <td>w</td>
+      <td>v</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>25981</th>
+      <td>e</td>
+      <td>f</td>
+      <td>y</td>
+      <td>r</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>c</td>
+      <td>n</td>
+      <td>b</td>
+      <td>...</td>
+      <td>s</td>
+      <td>s</td>
+      <td>n</td>
+      <td>p</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>k</td>
+      <td>v</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>25982</th>
+      <td>e</td>
+      <td>f</td>
+      <td>s</td>
+      <td>e</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>c</td>
+      <td>n</td>
+      <td>y</td>
+      <td>...</td>
+      <td>s</td>
+      <td>y</td>
+      <td>w</td>
+      <td>p</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>r</td>
+      <td>y</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>25983</th>
+      <td>p</td>
+      <td>f</td>
+      <td>g</td>
+      <td>e</td>
+      <td>f</td>
+      <td>n</td>
+      <td>a</td>
+      <td>c</td>
+      <td>b</td>
+      <td>b</td>
+      <td>...</td>
+      <td>s</td>
+      <td>y</td>
+      <td>w</td>
+      <td>w</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>h</td>
+      <td>v</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>25984</th>
+      <td>e</td>
+      <td>x</td>
+      <td>g</td>
+      <td>g</td>
+      <td>t</td>
+      <td>n</td>
+      <td>f</td>
+      <td>w</td>
+      <td>b</td>
+      <td>h</td>
+      <td>...</td>
+      <td>k</td>
+      <td>f</td>
+      <td>w</td>
+      <td>w</td>
+      <td>w</td>
+      <td>t</td>
+      <td>e</td>
+      <td>w</td>
+      <td>s</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>25985</th>
+      <td>e</td>
+      <td>b</td>
+      <td>y</td>
+      <td>y</td>
+      <td>t</td>
+      <td>l</td>
+      <td>f</td>
+      <td>c</td>
+      <td>b</td>
+      <td>y</td>
+      <td>...</td>
+      <td>k</td>
+      <td>k</td>
+      <td>g</td>
+      <td>o</td>
+      <td>w</td>
+      <td>o</td>
+      <td>l</td>
+      <td>k</td>
+      <td>s</td>
+      <td>g</td>
+    </tr>
+  </tbody>
+</table>
+<p>25986 rows × 22 columns</p>
+</div></div></div>
+</div>
+<p>Let’s see what the classifications are and how balanced the dataset is. Highly imbalanced datasets require special techniques to ensure valid models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class
+e    14354
+p    11632
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll introduce a new plotting library – “seaborn”, which has some advantages over matplotlib. Here we show how to quickly make a histogram from a dataframe. Seaborn works nicely with pandas dataframes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Count plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Count Plot of Class Frequencies&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b4c09defc82a9e49732e5e7d896f0e1ab28243be37ea2ac13665f7dedf7332ed.png" src="../../_images/b4c09defc82a9e49732e5e7d896f0e1ab28243be37ea2ac13665f7dedf7332ed.png" />
+</div>
+</div>
+<p>As another example let’s plot the “cap color” feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;cap-color&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Count Plot of Cap Color Frequencies&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cap Color&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/257054971cf097da4db47b5787347ea2eba2973d57de991e01930388c4ddc08c.png" src="../../_images/257054971cf097da4db47b5787347ea2eba2973d57de991e01930388c4ddc08c.png" />
+</div>
+</div>
+<p>I wonder how the color correlates to the outcome – are some color more poisonous? We’ll do some pandas work to make this summary for us. (Here’s a nice overview of <code class="docutils literal notranslate"><span class="pre">groupby</span></code>: <a class="reference external" href="https://builtin.com/data-science/pandas-groupby">https://builtin.com/data-science/pandas-groupby</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count observations by color and toxicity</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;cap-color&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cap-color</th>
+      <th>class</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b</td>
+      <td>e</td>
+      <td>660</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b</td>
+      <td>p</td>
+      <td>551</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>c</td>
+      <td>e</td>
+      <td>526</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>c</td>
+      <td>p</td>
+      <td>413</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>e</td>
+      <td>e</td>
+      <td>1834</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>e</td>
+      <td>p</td>
+      <td>1627</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>g</td>
+      <td>e</td>
+      <td>2226</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>g</td>
+      <td>p</td>
+      <td>1765</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>n</td>
+      <td>e</td>
+      <td>2673</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>n</td>
+      <td>p</td>
+      <td>2137</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>p</td>
+      <td>e</td>
+      <td>611</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>p</td>
+      <td>p</td>
+      <td>483</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>r</td>
+      <td>e</td>
+      <td>467</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>r</td>
+      <td>p</td>
+      <td>380</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>u</td>
+      <td>e</td>
+      <td>502</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>u</td>
+      <td>p</td>
+      <td>413</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>w</td>
+      <td>e</td>
+      <td>1452</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>w</td>
+      <td>p</td>
+      <td>1137</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>y</td>
+      <td>e</td>
+      <td>1460</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>y</td>
+      <td>p</td>
+      <td>1210</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the bar plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;cap-color&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">})</span>
+
+<span class="c1"># Add plot title and labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Mushroom Colors with Poisonous Indication&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Customize the legend</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Toxicity&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Edible&#39;</span><span class="p">,</span> <span class="s1">&#39;Poisonous&#39;</span><span class="p">])</span>
+<span class="n">legend</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>  <span class="c1"># Edible in red</span>
+<span class="n">legend</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>   <span class="c1"># Poisonous in blue</span>
+
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d7d92e4768dae31d2c85a346f02637b7775ca12e4f2a84bb788c4813e29c0dd2.png" src="../../_images/d7d92e4768dae31d2c85a346f02637b7775ca12e4f2a84bb788c4813e29c0dd2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class</th>
+      <th>cap-shape</th>
+      <th>cap-surface</th>
+      <th>cap-color</th>
+      <th>ruises</th>
+      <th>odor</th>
+      <th>gill-attachment</th>
+      <th>gill-spacing</th>
+      <th>gill-size</th>
+      <th>gill-color</th>
+      <th>...</th>
+      <th>stalk-surface-above-ring</th>
+      <th>stalk-surface-below-ring</th>
+      <th>stalk-color-above-ring</th>
+      <th>stalk-color-below-ring</th>
+      <th>veil-color</th>
+      <th>ring-number</th>
+      <th>ring-type</th>
+      <th>spore-print-color</th>
+      <th>population</th>
+      <th>habitat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>...</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>2</td>
+      <td>6</td>
+      <td>4</td>
+      <td>10</td>
+      <td>2</td>
+      <td>9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>12</td>
+      <td>...</td>
+      <td>4</td>
+      <td>4</td>
+      <td>9</td>
+      <td>9</td>
+      <td>4</td>
+      <td>3</td>
+      <td>5</td>
+      <td>9</td>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>e</td>
+      <td>x</td>
+      <td>y</td>
+      <td>n</td>
+      <td>f</td>
+      <td>n</td>
+      <td>f</td>
+      <td>c</td>
+      <td>b</td>
+      <td>b</td>
+      <td>...</td>
+      <td>s</td>
+      <td>s</td>
+      <td>w</td>
+      <td>w</td>
+      <td>w</td>
+      <td>o</td>
+      <td>p</td>
+      <td>w</td>
+      <td>v</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>14354</td>
+      <td>11147</td>
+      <td>11081</td>
+      <td>8269</td>
+      <td>15833</td>
+      <td>10436</td>
+      <td>21292</td>
+      <td>19491</td>
+      <td>17489</td>
+      <td>7247</td>
+      <td>...</td>
+      <td>14548</td>
+      <td>14042</td>
+      <td>12153</td>
+      <td>11836</td>
+      <td>19245</td>
+      <td>19202</td>
+      <td>12009</td>
+      <td>8578</td>
+      <td>11920</td>
+      <td>10057</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 22 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count observations by odor and toxicity</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;odor&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the bar plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;odor&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">})</span>
+
+<span class="c1"># Add plot title and labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Mushroom Odor with Poisonous Indication&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Odor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
+
+<span class="c1"># Customize the legend</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Toxicity&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Edible&#39;</span><span class="p">,</span> <span class="s1">&#39;Poisonous&#39;</span><span class="p">])</span>
+<span class="n">legend</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>  <span class="c1"># Edible in red</span>
+<span class="n">legend</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>   <span class="c1"># Poisonous in blue</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/695bdd5a882604eb805167958408823b04321f4b7197dfef0407968ce23fb0ed.png" src="../../_images/695bdd5a882604eb805167958408823b04321f4b7197dfef0407968ce23fb0ed.png" />
+</div>
+</div>
+</section>
+<section id="correlation-matrix-heat-map">
+<h2><span class="section-number">22.3. </span>Correlation matrix heat map<a class="headerlink" href="#correlation-matrix-heat-map" title="Link to this heading"></a></h2>
+<p>Let’s get a quick visual representation of the relationshop between features in this dataset. We’ll use a version of a Chi-Squared test on all pairs <span class="math notranslate nohighlight">\((n,m)\)</span> of features in the dataset, including the target. (Heat maps for continuous data are easy to plot – because of the categories we have to do some extra work here. You can treat <code class="docutils literal notranslate"><span class="pre">cramers_v</span></code> as a black box for now.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2_contingency</span>
+
+<span class="c1"># Function to calculate Cramér&#39;s V</span>
+<span class="k">def</span> <span class="nf">cramers_v</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">confusion_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">chi2</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">chi2</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">categorical_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">categorical_columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">categorical_columns</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">col1</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">col2</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+        <span class="n">corr_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cramers_v</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">col2</span><span class="p">])</span>
+
+<span class="c1"># Convert to numeric values for plotting</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">corr_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class</th>
+      <th>cap-shape</th>
+      <th>cap-surface</th>
+      <th>cap-color</th>
+      <th>ruises</th>
+      <th>odor</th>
+      <th>gill-attachment</th>
+      <th>gill-spacing</th>
+      <th>gill-size</th>
+      <th>gill-color</th>
+      <th>...</th>
+      <th>stalk-surface-above-ring</th>
+      <th>stalk-surface-below-ring</th>
+      <th>stalk-color-above-ring</th>
+      <th>stalk-color-below-ring</th>
+      <th>veil-color</th>
+      <th>ring-number</th>
+      <th>ring-type</th>
+      <th>spore-print-color</th>
+      <th>population</th>
+      <th>habitat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>class</th>
+      <td>0.999922</td>
+      <td>0.030397</td>
+      <td>0.043075</td>
+      <td>0.020084</td>
+      <td>0.089974</td>
+      <td>0.465191</td>
+      <td>0.001138</td>
+      <td>0.063779</td>
+      <td>0.122908</td>
+      <td>0.088500</td>
+      <td>...</td>
+      <td>0.129749</td>
+      <td>0.102529</td>
+      <td>0.050202</td>
+      <td>0.044377</td>
+      <td>0.005063</td>
+      <td>0.022175</td>
+      <td>0.092049</td>
+      <td>0.124672</td>
+      <td>0.063370</td>
+      <td>0.053764</td>
+    </tr>
+    <tr>
+      <th>cap-shape</th>
+      <td>0.030397</td>
+      <td>1.000000</td>
+      <td>0.011547</td>
+      <td>0.020761</td>
+      <td>0.014305</td>
+      <td>0.020779</td>
+      <td>0.008688</td>
+      <td>0.017270</td>
+      <td>0.017995</td>
+      <td>0.020523</td>
+      <td>...</td>
+      <td>0.011107</td>
+      <td>0.017404</td>
+      <td>0.018379</td>
+      <td>0.017432</td>
+      <td>0.017128</td>
+      <td>0.007926</td>
+      <td>0.012183</td>
+      <td>0.016205</td>
+      <td>0.018208</td>
+      <td>0.015867</td>
+    </tr>
+    <tr>
+      <th>cap-surface</th>
+      <td>0.043075</td>
+      <td>0.011547</td>
+      <td>1.000000</td>
+      <td>0.022589</td>
+      <td>0.008736</td>
+      <td>0.024878</td>
+      <td>0.015569</td>
+      <td>0.027291</td>
+      <td>0.020465</td>
+      <td>0.025335</td>
+      <td>...</td>
+      <td>0.012902</td>
+      <td>0.012060</td>
+      <td>0.022897</td>
+      <td>0.021619</td>
+      <td>0.012788</td>
+      <td>0.016706</td>
+      <td>0.014214</td>
+      <td>0.016301</td>
+      <td>0.022058</td>
+      <td>0.020441</td>
+    </tr>
+    <tr>
+      <th>cap-color</th>
+      <td>0.020084</td>
+      <td>0.020761</td>
+      <td>0.022589</td>
+      <td>1.000000</td>
+      <td>0.021542</td>
+      <td>0.022804</td>
+      <td>0.017171</td>
+      <td>0.023427</td>
+      <td>0.021974</td>
+      <td>0.024858</td>
+      <td>...</td>
+      <td>0.019545</td>
+      <td>0.016909</td>
+      <td>0.024867</td>
+      <td>0.020831</td>
+      <td>0.017487</td>
+      <td>0.015235</td>
+      <td>0.023721</td>
+      <td>0.019681</td>
+      <td>0.023478</td>
+      <td>0.022749</td>
+    </tr>
+    <tr>
+      <th>ruises</th>
+      <td>0.089974</td>
+      <td>0.014305</td>
+      <td>0.008736</td>
+      <td>0.021542</td>
+      <td>0.999919</td>
+      <td>0.043431</td>
+      <td>0.002767</td>
+      <td>0.015149</td>
+      <td>0.011158</td>
+      <td>0.041328</td>
+      <td>...</td>
+      <td>0.025761</td>
+      <td>0.021659</td>
+      <td>0.027672</td>
+      <td>0.031543</td>
+      <td>0.006508</td>
+      <td>0.011759</td>
+      <td>0.037341</td>
+      <td>0.034545</td>
+      <td>0.014283</td>
+      <td>0.026531</td>
+    </tr>
+    <tr>
+      <th>odor</th>
+      <td>0.465191</td>
+      <td>0.020779</td>
+      <td>0.024878</td>
+      <td>0.022804</td>
+      <td>0.043431</td>
+      <td>1.000000</td>
+      <td>0.017001</td>
+      <td>0.026458</td>
+      <td>0.046978</td>
+      <td>0.027601</td>
+      <td>...</td>
+      <td>0.027740</td>
+      <td>0.031568</td>
+      <td>0.025946</td>
+      <td>0.023086</td>
+      <td>0.015490</td>
+      <td>0.019458</td>
+      <td>0.030861</td>
+      <td>0.032236</td>
+      <td>0.026293</td>
+      <td>0.021654</td>
+    </tr>
+    <tr>
+      <th>gill-attachment</th>
+      <td>0.001138</td>
+      <td>0.008688</td>
+      <td>0.015569</td>
+      <td>0.017171</td>
+      <td>0.002767</td>
+      <td>0.017001</td>
+      <td>0.999870</td>
+      <td>0.004789</td>
+      <td>0.007753</td>
+      <td>0.023883</td>
+      <td>...</td>
+      <td>0.008627</td>
+      <td>0.011742</td>
+      <td>0.020285</td>
+      <td>0.021662</td>
+      <td>0.010471</td>
+      <td>0.004408</td>
+      <td>0.010966</td>
+      <td>0.010641</td>
+      <td>0.012992</td>
+      <td>0.012999</td>
+    </tr>
+    <tr>
+      <th>gill-spacing</th>
+      <td>0.063779</td>
+      <td>0.017270</td>
+      <td>0.027291</td>
+      <td>0.023427</td>
+      <td>0.015149</td>
+      <td>0.026458</td>
+      <td>0.004789</td>
+      <td>0.999897</td>
+      <td>0.011227</td>
+      <td>0.021896</td>
+      <td>...</td>
+      <td>0.011253</td>
+      <td>0.014541</td>
+      <td>0.022406</td>
+      <td>0.028543</td>
+      <td>0.008439</td>
+      <td>0.013913</td>
+      <td>0.013069</td>
+      <td>0.018936</td>
+      <td>0.027893</td>
+      <td>0.029246</td>
+    </tr>
+    <tr>
+      <th>gill-size</th>
+      <td>0.122908</td>
+      <td>0.017995</td>
+      <td>0.020465</td>
+      <td>0.021974</td>
+      <td>0.011158</td>
+      <td>0.046978</td>
+      <td>0.007753</td>
+      <td>0.011227</td>
+      <td>0.999913</td>
+      <td>0.031603</td>
+      <td>...</td>
+      <td>0.008155</td>
+      <td>0.009570</td>
+      <td>0.027692</td>
+      <td>0.030796</td>
+      <td>0.004786</td>
+      <td>0.008013</td>
+      <td>0.039065</td>
+      <td>0.041701</td>
+      <td>0.025668</td>
+      <td>0.023956</td>
+    </tr>
+    <tr>
+      <th>gill-color</th>
+      <td>0.088500</td>
+      <td>0.020523</td>
+      <td>0.025335</td>
+      <td>0.024858</td>
+      <td>0.041328</td>
+      <td>0.027601</td>
+      <td>0.023883</td>
+      <td>0.021896</td>
+      <td>0.031603</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>0.030065</td>
+      <td>0.031451</td>
+      <td>0.023405</td>
+      <td>0.027307</td>
+      <td>0.019835</td>
+      <td>0.019987</td>
+      <td>0.033363</td>
+      <td>0.031731</td>
+      <td>0.029769</td>
+      <td>0.026966</td>
+    </tr>
+    <tr>
+      <th>stalk-shape</th>
+      <td>0.016855</td>
+      <td>0.017822</td>
+      <td>0.003229</td>
+      <td>0.035745</td>
+      <td>0.000832</td>
+      <td>0.036932</td>
+      <td>0.008490</td>
+      <td>0.001425</td>
+      <td>0.007682</td>
+      <td>0.031472</td>
+      <td>...</td>
+      <td>0.033136</td>
+      <td>0.014859</td>
+      <td>0.028966</td>
+      <td>0.027132</td>
+      <td>0.008627</td>
+      <td>0.017158</td>
+      <td>0.036730</td>
+      <td>0.026428</td>
+      <td>0.020362</td>
+      <td>0.029390</td>
+    </tr>
+    <tr>
+      <th>stalk-root</th>
+      <td>0.047294</td>
+      <td>0.019882</td>
+      <td>0.019969</td>
+      <td>0.029892</td>
+      <td>0.030638</td>
+      <td>0.031082</td>
+      <td>0.011925</td>
+      <td>0.016121</td>
+      <td>0.041062</td>
+      <td>0.033103</td>
+      <td>...</td>
+      <td>0.015758</td>
+      <td>0.015929</td>
+      <td>0.031278</td>
+      <td>0.024221</td>
+      <td>0.016108</td>
+      <td>0.015848</td>
+      <td>0.022331</td>
+      <td>0.032983</td>
+      <td>0.025749</td>
+      <td>0.029484</td>
+    </tr>
+    <tr>
+      <th>stalk-surface-above-ring</th>
+      <td>0.129749</td>
+      <td>0.011107</td>
+      <td>0.012902</td>
+      <td>0.019545</td>
+      <td>0.025761</td>
+      <td>0.027740</td>
+      <td>0.008627</td>
+      <td>0.011253</td>
+      <td>0.008155</td>
+      <td>0.030065</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>0.025875</td>
+      <td>0.029341</td>
+      <td>0.026336</td>
+      <td>0.010873</td>
+      <td>0.008614</td>
+      <td>0.032624</td>
+      <td>0.031709</td>
+      <td>0.012388</td>
+      <td>0.018257</td>
+    </tr>
+    <tr>
+      <th>stalk-surface-below-ring</th>
+      <td>0.102529</td>
+      <td>0.017404</td>
+      <td>0.012060</td>
+      <td>0.016909</td>
+      <td>0.021659</td>
+      <td>0.031568</td>
+      <td>0.011742</td>
+      <td>0.014541</td>
+      <td>0.009570</td>
+      <td>0.031451</td>
+      <td>...</td>
+      <td>0.025875</td>
+      <td>1.000000</td>
+      <td>0.024655</td>
+      <td>0.024549</td>
+      <td>0.011019</td>
+      <td>0.015529</td>
+      <td>0.030188</td>
+      <td>0.034359</td>
+      <td>0.021407</td>
+      <td>0.018069</td>
+    </tr>
+    <tr>
+      <th>stalk-color-above-ring</th>
+      <td>0.050202</td>
+      <td>0.018379</td>
+      <td>0.022897</td>
+      <td>0.024867</td>
+      <td>0.027672</td>
+      <td>0.025946</td>
+      <td>0.020285</td>
+      <td>0.022406</td>
+      <td>0.027692</td>
+      <td>0.023405</td>
+      <td>...</td>
+      <td>0.029341</td>
+      <td>0.024655</td>
+      <td>1.000000</td>
+      <td>0.025180</td>
+      <td>0.018200</td>
+      <td>0.020252</td>
+      <td>0.024944</td>
+      <td>0.021869</td>
+      <td>0.023604</td>
+      <td>0.020929</td>
+    </tr>
+    <tr>
+      <th>stalk-color-below-ring</th>
+      <td>0.044377</td>
+      <td>0.017432</td>
+      <td>0.021619</td>
+      <td>0.020831</td>
+      <td>0.031543</td>
+      <td>0.023086</td>
+      <td>0.021662</td>
+      <td>0.028543</td>
+      <td>0.030796</td>
+      <td>0.027307</td>
+      <td>...</td>
+      <td>0.026336</td>
+      <td>0.024549</td>
+      <td>0.025180</td>
+      <td>1.000000</td>
+      <td>0.018126</td>
+      <td>0.013893</td>
+      <td>0.026438</td>
+      <td>0.026470</td>
+      <td>0.024288</td>
+      <td>0.025119</td>
+    </tr>
+    <tr>
+      <th>veil-color</th>
+      <td>0.005063</td>
+      <td>0.017128</td>
+      <td>0.012788</td>
+      <td>0.017487</td>
+      <td>0.006508</td>
+      <td>0.015490</td>
+      <td>0.010471</td>
+      <td>0.008439</td>
+      <td>0.004786</td>
+      <td>0.019835</td>
+      <td>...</td>
+      <td>0.010873</td>
+      <td>0.011019</td>
+      <td>0.018200</td>
+      <td>0.018126</td>
+      <td>1.000000</td>
+      <td>0.009771</td>
+      <td>0.013793</td>
+      <td>0.018753</td>
+      <td>0.015103</td>
+      <td>0.017111</td>
+    </tr>
+    <tr>
+      <th>ring-number</th>
+      <td>0.022175</td>
+      <td>0.007926</td>
+      <td>0.016706</td>
+      <td>0.015235</td>
+      <td>0.011759</td>
+      <td>0.019458</td>
+      <td>0.004408</td>
+      <td>0.013913</td>
+      <td>0.008013</td>
+      <td>0.019987</td>
+      <td>...</td>
+      <td>0.008614</td>
+      <td>0.015529</td>
+      <td>0.020252</td>
+      <td>0.013893</td>
+      <td>0.009771</td>
+      <td>1.000000</td>
+      <td>0.008527</td>
+      <td>0.018441</td>
+      <td>0.020609</td>
+      <td>0.016895</td>
+    </tr>
+    <tr>
+      <th>ring-type</th>
+      <td>0.092049</td>
+      <td>0.012183</td>
+      <td>0.014214</td>
+      <td>0.023721</td>
+      <td>0.037341</td>
+      <td>0.030861</td>
+      <td>0.010966</td>
+      <td>0.013069</td>
+      <td>0.039065</td>
+      <td>0.033363</td>
+      <td>...</td>
+      <td>0.032624</td>
+      <td>0.030188</td>
+      <td>0.024944</td>
+      <td>0.026438</td>
+      <td>0.013793</td>
+      <td>0.008527</td>
+      <td>1.000000</td>
+      <td>0.036000</td>
+      <td>0.016219</td>
+      <td>0.017606</td>
+    </tr>
+    <tr>
+      <th>spore-print-color</th>
+      <td>0.124672</td>
+      <td>0.016205</td>
+      <td>0.016301</td>
+      <td>0.019681</td>
+      <td>0.034545</td>
+      <td>0.032236</td>
+      <td>0.010641</td>
+      <td>0.018936</td>
+      <td>0.041701</td>
+      <td>0.031731</td>
+      <td>...</td>
+      <td>0.031709</td>
+      <td>0.034359</td>
+      <td>0.021869</td>
+      <td>0.026470</td>
+      <td>0.018753</td>
+      <td>0.018441</td>
+      <td>0.036000</td>
+      <td>1.000000</td>
+      <td>0.020755</td>
+      <td>0.023303</td>
+    </tr>
+    <tr>
+      <th>population</th>
+      <td>0.063370</td>
+      <td>0.018208</td>
+      <td>0.022058</td>
+      <td>0.023478</td>
+      <td>0.014283</td>
+      <td>0.026293</td>
+      <td>0.012992</td>
+      <td>0.027893</td>
+      <td>0.025668</td>
+      <td>0.029769</td>
+      <td>...</td>
+      <td>0.012388</td>
+      <td>0.021407</td>
+      <td>0.023604</td>
+      <td>0.024288</td>
+      <td>0.015103</td>
+      <td>0.020609</td>
+      <td>0.016219</td>
+      <td>0.020755</td>
+      <td>1.000000</td>
+      <td>0.025203</td>
+    </tr>
+    <tr>
+      <th>habitat</th>
+      <td>0.053764</td>
+      <td>0.015867</td>
+      <td>0.020441</td>
+      <td>0.022749</td>
+      <td>0.026531</td>
+      <td>0.021654</td>
+      <td>0.012999</td>
+      <td>0.029246</td>
+      <td>0.023956</td>
+      <td>0.026966</td>
+      <td>...</td>
+      <td>0.018257</td>
+      <td>0.018069</td>
+      <td>0.020929</td>
+      <td>0.025119</td>
+      <td>0.017111</td>
+      <td>0.016895</td>
+      <td>0.017606</td>
+      <td>0.023303</td>
+      <td>0.025203</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>22 rows × 22 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the correlation matrix</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="mf">.8</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cramér&#39;s V Correlation Matrix for Categorical Features&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/de24f01cb533460f81ec726ef460550e7585009c0896527c95b23e581955d719.png" src="../../_images/de24f01cb533460f81ec726ef460550e7585009c0896527c95b23e581955d719.png" />
+</div>
+</div>
+<p>Which features seem to be important?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_matrix</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">][</span><span class="n">corr_matrix</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class                       0.999922
+odor                        0.465191
+gill-size                   0.122908
+stalk-surface-above-ring    0.129749
+stalk-surface-below-ring    0.102529
+spore-print-color           0.124672
+Name: class, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-modeling">
+<h2><span class="section-number">22.4. </span>Data Modeling<a class="headerlink" href="#data-modeling" title="Link to this heading"></a></h2>
+<p>We’re finally ready to do some data modeling using scikit-learn. In this cell we import some methods we’ll use, reload the data frame (just to be safe), re-pre-process-it, and one-hot-encode all the categorical variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">)</span>
+
+<span class="c1"># drop the useless feature</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;veil-type&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># drop the target from X -- and store it as y</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+
+<span class="c1"># one-hot encode all columns at once</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># show it to me</span>
+<span class="n">X</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cap-shape_b</th>
+      <th>cap-shape_c</th>
+      <th>cap-shape_f</th>
+      <th>cap-shape_k</th>
+      <th>cap-shape_s</th>
+      <th>cap-shape_x</th>
+      <th>cap-surface_f</th>
+      <th>cap-surface_g</th>
+      <th>cap-surface_s</th>
+      <th>cap-surface_y</th>
+      <th>...</th>
+      <th>population_s</th>
+      <th>population_v</th>
+      <th>population_y</th>
+      <th>habitat_d</th>
+      <th>habitat_g</th>
+      <th>habitat_l</th>
+      <th>habitat_m</th>
+      <th>habitat_p</th>
+      <th>habitat_u</th>
+      <th>habitat_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>...</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+      <td>25986</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>23726</td>
+      <td>24509</td>
+      <td>19264</td>
+      <td>23074</td>
+      <td>24518</td>
+      <td>18312</td>
+      <td>19762</td>
+      <td>23825</td>
+      <td>19466</td>
+      <td>18384</td>
+      <td>...</td>
+      <td>22365</td>
+      <td>17577</td>
+      <td>21675</td>
+      <td>19413</td>
+      <td>21040</td>
+      <td>23275</td>
+      <td>24278</td>
+      <td>22840</td>
+      <td>24129</td>
+      <td>24425</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 116 columns</p>
+</div></div></div>
+</div>
+<section id="decision-tree-classifier">
+<h3><span class="section-number">22.4.1. </span>Decision Tree Classifier<a class="headerlink" href="#decision-tree-classifier" title="Link to this heading"></a></h3>
+<p>Our first model is a decision tree, which is one of the oldest algorithms for classifying observations. Before we create any models, we <em>always</em> create a train-test split so there is unseen testing data that wasn’t available when the model was training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into training and testing sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Initialize the DecisionTreeClassifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="c1"># Fit the model</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">])</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>5188</th>
+      <th>5189</th>
+      <th>5190</th>
+      <th>5191</th>
+      <th>5192</th>
+      <th>5193</th>
+      <th>5194</th>
+      <th>5195</th>
+      <th>5196</th>
+      <th>5197</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>p</td>
+      <td>p</td>
+      <td>e</td>
+      <td>p</td>
+      <td>p</td>
+      <td>p</td>
+      <td>e</td>
+      <td>e</td>
+      <td>e</td>
+      <td>p</td>
+      <td>...</td>
+      <td>p</td>
+      <td>e</td>
+      <td>p</td>
+      <td>e</td>
+      <td>p</td>
+      <td>p</td>
+      <td>p</td>
+      <td>p</td>
+      <td>e</td>
+      <td>p</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>p</td>
+      <td>e</td>
+      <td>e</td>
+      <td>p</td>
+      <td>p</td>
+      <td>p</td>
+      <td>e</td>
+      <td>p</td>
+      <td>e</td>
+      <td>p</td>
+      <td>...</td>
+      <td>p</td>
+      <td>p</td>
+      <td>p</td>
+      <td>e</td>
+      <td>e</td>
+      <td>e</td>
+      <td>p</td>
+      <td>p</td>
+      <td>e</td>
+      <td>p</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 5198 columns</p>
+</div></div></div>
+</div>
+<p>There are many metrics for evaluating categorical models, and they are sometimes at odds. Accuracy is simplistic and obscures what could be more important – are there more false positives or more false negatives? And which is more important? In a task to identify poisonous mushrooms, a false negative (labeling a ‘p’ as an ‘e’) is deadly. The “recall” on “p” below captures this value. This measures the percent of poisonous mushrooms you have correctly labeled as poisonous.</p>
+<p>Recall is not everything, though. You can easily get perfect “poison” recall by labeling every mushroom as poisonous! Precision measures the fraction of mushrooms you label as poisonous which actually are.</p>
+<p>The <span class="math notranslate nohighlight">\(F_1\)</span>-score is a type of geometric mean between precision and recall and strikes a bit of a balance between the two.</p>
+<p>In this notebook, look first at “p-recall”, but keep an eye on the other metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate the model</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.6671796844940362
+Classification Report:
+              precision    recall  f1-score   support
+
+           e       0.70      0.69      0.70      2873
+           p       0.62      0.64      0.63      2325
+
+    accuracy                           0.67      5198
+   macro avg       0.66      0.66      0.66      5198
+weighted avg       0.67      0.67      0.67      5198
+</pre></div>
+</div>
+</div>
+</div>
+<p>A confusion matrix is a nice way to really show everything that a classifier is doing. The main diagonal are the numbers of correctly classified observations. The off-diagonals are errors. Unfortunately this simple version is unlabeled</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
+
+<span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1978,  895],
+       [ 835, 1490]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>With a bit more work we can get a label.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the confusion matrix</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">cm_display</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="o">=</span><span class="n">cm</span><span class="p">,</span> <span class="n">display_labels</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="c1"># Plot the confusion matrix</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/142d1213f90434a8a45c0ca35b7de034177eeb2d1a42e0a5ac802d644c7f5885.png" src="../../_images/142d1213f90434a8a45c0ca35b7de034177eeb2d1a42e0a5ac802d644c7f5885.png" />
+</div>
+</div>
+</section>
+<section id="testing-more-methods">
+<h3><span class="section-number">22.4.2. </span>Testing more methods<a class="headerlink" href="#testing-more-methods" title="Link to this heading"></a></h3>
+<p>First I’ll define a helper method that takes any dataset and a classifier “clf” and</p>
+<ul class="simple">
+<li><p>fits the model to the training data</p></li>
+<li><p>applies the model to the test data</p></li>
+<li><p>gets an accuracy score and a classification report for the test data</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">classifier_tryout</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+	<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+	<span class="c1"># Make predictions</span>
+	<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+	<span class="c1"># Evaluate the model</span>
+	<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report:&quot;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In what follows, we run several very different models and compare their performance. We won’t go into much detail about the models. But note how the scikit-learn API makes dealing with each of the models very similar</p>
+</section>
+<section id="random-forest">
+<h3><span class="section-number">22.4.3. </span>Random Forest<a class="headerlink" href="#random-forest" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">classifier_tryout</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.7464409388226241
+Classification Report:
+              precision    recall  f1-score   support
+
+           e       0.76      0.80      0.78      2873
+           p       0.73      0.69      0.71      2325
+
+    accuracy                           0.75      5198
+   macro avg       0.74      0.74      0.74      5198
+weighted avg       0.75      0.75      0.75      5198
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="support-vector-machines">
+<h3><span class="section-number">22.4.4. </span>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="c1"># Initialize the RandomForestClassifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">)</span>
+<span class="n">classifier_tryout</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.7504809542131589
+Classification Report:
+              precision    recall  f1-score   support
+
+           e       0.76      0.79      0.78      2873
+           p       0.73      0.70      0.71      2325
+
+    accuracy                           0.75      5198
+   macro avg       0.75      0.75      0.75      5198
+weighted avg       0.75      0.75      0.75      5198
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="logistic-regression">
+<h3><span class="section-number">22.4.5. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># Initialize the LogisticRegression</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">classifier_tryout</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.746056175452097
+Classification Report:
+              precision    recall  f1-score   support
+
+           e       0.76      0.78      0.77      2873
+           p       0.72      0.70      0.71      2325
+
+    accuracy                           0.75      5198
+   macro avg       0.74      0.74      0.74      5198
+weighted avg       0.75      0.75      0.75      5198
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="k-nearest-neighbors">
+<h3><span class="section-number">22.4.6. </span>k-Nearest Neighbors<a class="headerlink" href="#k-nearest-neighbors" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="c1"># Initialize the KNeighborsClassifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+<span class="n">classifier_tryout</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.6854559445940747
+Classification Report:
+              precision    recall  f1-score   support
+
+           e       0.70      0.76      0.73      2873
+           p       0.67      0.60      0.63      2325
+
+    accuracy                           0.69      5198
+   macro avg       0.68      0.68      0.68      5198
+weighted avg       0.68      0.69      0.68      5198
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gradientboost">
+<h3><span class="section-number">22.4.7. </span>GradientBoost<a class="headerlink" href="#gradientboost" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+
+<span class="c1"># Initialize the GradientBoostingClassifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">classifier_tryout</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.7518276260100039
+Classification Report:
+              precision    recall  f1-score   support
+
+           e       0.77      0.79      0.78      2873
+           p       0.73      0.70      0.72      2325
+
+    accuracy                           0.75      5198
+   macro avg       0.75      0.75      0.75      5198
+weighted avg       0.75      0.75      0.75      5198
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="neural-network">
+<h3><span class="section-number">22.4.8. </span>Neural Network<a class="headerlink" href="#neural-network" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="c1"># Initialize the MLPClassifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">,),</span> <span class="n">learning_rate</span><span class="o">=</span><span class="s1">&#39;adaptive&#39;</span><span class="p">)</span>
+<span class="n">classifier_tryout</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.7052712581762216
+Classification Report:
+              precision    recall  f1-score   support
+
+           e       0.73      0.73      0.73      2873
+           p       0.67      0.67      0.67      2325
+
+    accuracy                           0.71      5198
+   macro avg       0.70      0.70      0.70      5198
+weighted avg       0.71      0.71      0.71      5198
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2><span class="section-number">22.5. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>This notebook gave a quick overview of the full data analysis workflow on a real world dataset. Data ingesting and cleaning; exploratory data analysis; modeling. There is much we can do next by trying to optimize models, but that is beyond the scope of this notebook. Also, we only looked at categorical data here – continuous/quantitative data is a bit different but not much (linear regression is the first stop with continuous data.)</p>
+<p>Which model above do you think is the best? Which one would you start with to try to get even better results?</p>
+<p>As an application, find your own dataset and try to mirror the process we took here. Not all the steps in this notebook will apply directly to whatever dataset you find, but see what you can come up with and how well you can model the target in your data!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lessons/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ML_Book_Club.html" class="btn btn-neutral float-left" title="21. ML Book Club" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Life_Expectancy_Student.html" class="btn btn-neutral float-right" title="23. Life Expectancy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

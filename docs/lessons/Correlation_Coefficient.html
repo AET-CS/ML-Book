@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9. Correlation Coefficient &mdash; Machine Learning for Research</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js?v=f930bc37"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. Linear Algebra and Python Lists" href="notebooks/Matrices_Student.html" />
+    <link rel="prev" title="8. Linear Least Squares" href="notebooks/Least_Squares.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../intro.html" class="icon icon-home">
+            Project name not set
+              <img src="../_static/ML-logo-1.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hw01.html">1. Homework 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw02.html">2. Exploring data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsl.html">3. Fixing WSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw03.html">4. August 28</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Bayes_Theorem_Student.html">5. Bayes’ Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-python-intro.html">6. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linear_regression_derivation.html">7. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Least_Squares.html">8. Linear Least Squares</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Correlation Coefficient</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Linear Algebra in Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Student.html">10. Linear Algebra and Python Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Intro_to_Matrices_in_NumPy.html">11. Introduction to Matrices in NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Index_Warmup_Student.html">12. Matrix indices warmup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Gaussian_Elimination_Student.html">13. Gaussian Elimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/LogLogRegression.html">14. Log-Log Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Strassen-Lab.html">15. Strassen’s Algorithm (Optional Extension)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gauss.html">16. Gauss Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inversion.html">17. Matrix Inversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Running_Time_Analysis.html">18. Running Time Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reading.html">19. Reading for Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Hobo_Student.html">20. Hobo Data, Student Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ML_Book_Club.html">21. ML Book Club</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Student.html">22. Poisoned Mushroom Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html">23. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html#exercises">24. Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinates.html">26. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA%20Matrices.html">27. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA.html">28. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="picture.html">29. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Cancer_Logistic_Student.html">30. Cancer Data Logistic Regression (Student)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What Is?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy.html">31. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2_Student.html">32. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw02.html">33. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Bayes.html">34. The Bayes Error Rate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Weather.html">35. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/weather-teacher.html">36. Cloudy Days in Leesburg</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9. </span>Correlation Coefficient</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/lessons/Correlation_Coefficient.md" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="correlation-coefficient">
+<h1><span class="section-number">9. </span>Correlation Coefficient<a class="headerlink" href="#correlation-coefficient" title="Link to this heading"></a></h1>
+<p>We assume, as usual, a ground truth model <span class="math notranslate nohighlight">\(y = f(x) + \epsilon\)</span> where <span class="math notranslate nohighlight">\(f\)</span> is usually unknown, a (possibly random) sample of points <span class="math notranslate nohighlight">\((x_1, y_1), \cdots, (x_n, y_n)\)</span> and a linear model <span class="math notranslate nohighlight">\(\tilde{y} = ax + b\)</span>. In this setting we usually need to know <em>how good</em> the linear model is – how well does if capture the ground truth <span class="math notranslate nohighlight">\(f(x)\)</span>?</p>
+<p>One obvious measure is the sum of squared errors, which we minimized last class to derive the linear regression equations.</p>
+<div class="math notranslate nohighlight">
+\[SSE = \sum_{i=1}^n (\tilde{y}_i - y_i)^2\]</div>
+<p>While this literally captures the error in the model on each point, it is hard to interpret, it scales with the number of points, and is in different units from the given data. We can normalize it to the mean sum of squared errors:</p>
+<div class="math notranslate nohighlight">
+\[MSE = \dfrac{1}{n}\sum_{i=1}^n (\tilde{y}_i - y_i)^2\]</div>
+<p>which at least doesn’t scale with the number of points but is in different units. Thus by taking a radical</p>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{\dfrac{1}{n}\sum_{i=1}^n (\tilde{y}_i - y_i)^2}\]</div>
+<p>we get the root mean sum of squared errors. This at least scales with the magnitude of the <span class="math notranslate nohighlight">\(y\)</span> values, so you can interpret it somewhat. It is also similar
+to a standard deviation, which is familiar to many people. (Note some texts would divide by <span class="math notranslate nohighlight">\(n-2\)</span> instead of <span class="math notranslate nohighlight">\(n\)</span> to create a truly unbiased
+estimator for the standard deviation, but this simpler version aggrees with other data science presentations, including kaggle.)</p>
+<section id="pearson-s-correlation-coefficient">
+<h2><span class="section-number">9.1. </span>Pearson’s Correlation Coefficient<a class="headerlink" href="#pearson-s-correlation-coefficient" title="Link to this heading"></a></h2>
+<p>While variants of SSE have their place, one cannot escape the use of <span class="math notranslate nohighlight">\(r\)</span>, the Pearson’s correlation coefficient. Students learn in algebra classes
+that a linear regression coefficient <span class="math notranslate nohighlight">\(r=1\)</span> is a perfect positive correlation and <span class="math notranslate nohighlight">\(r=-1\)</span> is a perfect negative correlation and <span class="math notranslate nohighlight">\(r=0.5\)</span> is a weak
+correlation, for example. We will take a more precise approach.</p>
+<p>One formular for <span class="math notranslate nohighlight">\(r\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[r^2 = \dfrac{SS_{reg}}{SS_{tot}} = \dfrac{\sum_i(\tilde{y}_i - \overline{y})^2} {\sum_i(y_i - \overline{y})^2}\]</div>
+<p>Let’s unpack this. <span class="math notranslate nohighlight">\(SS_{reg}\)</span> is the sum of squared-error due to regression and <span class="math notranslate nohighlight">\(SS_{tot}\)</span> is the sum of squared-error total (due to the original data).
+Here <span class="math notranslate nohighlight">\(\overline{y} = \frac1n\sum_i y_i\)</span> is the mean of the observed <span class="math notranslate nohighlight">\(y_i\)</span> values. <span class="math notranslate nohighlight">\(SS_{tot}\)</span>, then, is the variance of the observed <span class="math notranslate nohighlight">\(y_i\)</span> values – it is the
+sum of the squared deviations of the observations from their mean.</p>
+<p><span class="math notranslate nohighlight">\(SS_{reg}\)</span>, on the other hand, is the variance of the predicted <span class="math notranslate nohighlight">\(\tilde{y}_i\)</span> values, relative to the same observed mean.</p>
+<p>The ratio of the two is the ratio of the “explained variance” to the “total variance.” There is always variance in the original dataset. If our linear
+model very closely fits the data, then it will explain most of that original variance. That would correspond to a high <span class="math notranslate nohighlight">\(r^2\)</span> value. On the other hand
+a low <span class="math notranslate nohighlight">\(r^2\)</span> indicates that there is variance in the data that is not capture by the linear model. Something else is happening to create this
+data shape.</p>
+<p>It can be helpful to think of <span class="math notranslate nohighlight">\(r^2\)</span> as the percent of “explained variance”. You’ll notice this formula is for <span class="math notranslate nohighlight">\(r^2\)</span>, not <span class="math notranslate nohighlight">\(r\)</span>. Obviously both are <span class="math notranslate nohighlight">\(&lt;1\)</span> but
+they are not identical. We may see more details of the various ways to interpret <span class="math notranslate nohighlight">\(r\)</span> vs <span class="math notranslate nohighlight">\(r^2\)</span> but honestly for most cases this explanation
+is quite good enough and better than what most people understand!</p>
+</section>
+<section id="r-0">
+<h2><span class="section-number">9.2. </span>r=0<a class="headerlink" href="#r-0" title="Link to this heading"></a></h2>
+<p>You may have been taught that <span class="math notranslate nohighlight">\(r=0\)</span> implies no correlation between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> pairs. This is often indicated in math books with an
+amorphous cloud of points, wandering lonely across the page, enigmatic and unknowable. Actually a number of highly correlated
+datasets can claim to possess <span class="math notranslate nohighlight">\(r=0\)</span> values as this helpful chart shows<a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p><img alt="Examples of correlation" src="../_images/correlation_examples.png" /></p>
+<p>To be correct, <span class="math notranslate nohighlight">\(r=0\)</span> implies no <strong>linear</strong> correlation between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. If it so happens that every predicted <span class="math notranslate nohighlight">\(\tilde{y}_i\)</span> value is identical to the
+mean <span class="math notranslate nohighlight">\(\overline{y}\)</span>, then <span class="math notranslate nohighlight">\(r^2=0\)</span>. Datasets with perfect vertical symmetry can have this property.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>By DenisBoigelot, original uploader was Imagecreator - Own work, original uploader was Imagecreator, CC0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=15165296">https://commons.wikimedia.org/w/index.php?curid=15165296</a></p>
+</aside>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lessons"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notebooks/Least_Squares.html" class="btn btn-neutral float-left" title="8. Linear Least Squares" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="notebooks/Matrices_Student.html" class="btn btn-neutral float-right" title="10. Linear Algebra and Python Lists" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
