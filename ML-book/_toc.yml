@@ -9,10 +9,8 @@ parts:
 - caption: Setup
   numbered: true
   chapters:
-  - file: lessons/hw01
-  - file: lessons/hw02
-  - file: lessons/wsl
-  - file: lessons/cw03
+  - file: lessons/Computer_Setup
+  - file: lessons/Exploring_Weather_Data
 - caption: Measures of Closeness
   numbered: true
   chapters:

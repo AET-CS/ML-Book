@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Quick Jupyter Intro and Python Loops &#8212; Machine Learning for Research</title>
+    <title>2. Exploring Weather Data &#8212; Machine Learning for Research</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/jupyter-python-intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/Exploring_Weather_Data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Linear Regression" href="Linear_regression_derivation.html" />
-    <link rel="prev" title="3. Bayes’ Theorem" href="notebooks/Bayes_Theorem_Student.html" />
+    <link rel="next" title="3. Bayes’ Theorem" href="notebooks/Bayes_Theorem_Student.html" />
+    <link rel="prev" title="1. Setting up your computer" href="Computer_Setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,14 +180,14 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Computer_Setup.html">1. Setting up your computer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Exploring_Weather_Data.html">2. Exploring Weather Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Exploring Weather Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Bayes_Theorem_Student.html">3. Bayes’ Theorem</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-python-intro.html">4. Quick Jupyter Intro and Python Loops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linear_regression_derivation.html">5. Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Least_Squares.html">6. Linear Least Squares</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation_Coefficient.html">7. Correlation Coefficient</a></li>
@@ -301,7 +299,7 @@
       
       
       
-      <li><a href="../_sources/lessons/jupyter-python-intro.md" target="_blank"
+      <li><a href="../_sources/lessons/Exploring_Weather_Data.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Quick Jupyter Intro and Python Loops</h1>
+    <h1>Exploring Weather Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,9 +393,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-loops">4.1. Python Loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-lists">4.2. Python Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensions">4.3. Comprehensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-data">2.1. Look at the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-the-data">2.2. Analyse the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">2.3. Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">2.4. Homework</a></li>
 </ul>
             </nav>
         </div>
@@ -409,114 +408,56 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="quick-jupyter-intro-and-python-loops">
-<h1><span class="section-number">4. </span>Quick Jupyter Intro and Python Loops<a class="headerlink" href="#quick-jupyter-intro-and-python-loops" title="Link to this heading">#</a></h1>
-<p>Jupyter notebook is arranged into cells. Cells can contain Input (computations/code), Output and Markdown (text). A cell can be <em>selected</em> or <em>active</em>. To <em>select</em> a cell, click to the left of it and it should highlight with a colored border. To activate a cell, click inside of it so the cursor is visible. To run a code cell, or render a text cell, type <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>.</p>
-<p>When a cell is selected you can do cell operations by typing single letters such as</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="exploring-weather-data">
+<h1><span class="section-number">2. </span>Exploring Weather Data<a class="headerlink" href="#exploring-weather-data" title="Link to this heading">#</a></h1>
+<p>The file <a class="reference download internal" download="" href="../_downloads/987b2dd1d6bc31374cbeade8442a1480/weather-daylight.csv"><span class="xref download myst">weather-daylight.csv</span></a> contains observational weather data for Leesburg, VA. We want to
+analyze the hypothesis “the fall of 2023 had more cloudy and rainy weekends than normal.”
+As a class, let’s look at the data and talk about our ideas for processing it. Open this file in Microsoft Excel, or something like it.</p>
+<p>What questions do you have? What pre-processing is relevant?
+What types of calculations would support or refute the claim? Do you know how to make
+those calculations in Python or another language or tool?</p>
+<section id="look-at-the-data">
+<h2><span class="section-number">2.1. </span>Look at the data<a class="headerlink" href="#look-at-the-data" title="Link to this heading">#</a></h2>
+<p>The first thing to do is just look at the data set. What do you see? Here are some questions you should ask.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> add a cell above this one</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> add a cell below this one</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> cut the cell to the clipboard</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> copy the cell to the clipboard</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">V</span></code> paste the cell on the clipboard</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> delete the cell</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> convert a cell to markdown style</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code> convert a markdown cell back to Input style</p></li>
-</ul>
-<p>You can also drag a selected cell around the notebook with the mouse. You should also get familiar with the menu bar and toolbars. There are several useful operations hidden there. For example, <em>rerun all cells</em> is handy as is <em>Clear Outputs of all cells</em></p>
-<section id="python-loops">
-<h2><span class="section-number">4.1. </span>Python Loops<a class="headerlink" href="#python-loops" title="Link to this heading">#</a></h2>
-<p>I’ll show some basic examples of how to do things in python. You may want to run these in Jupyter to verify.</p>
-<ul>
-<li><p>Print the numbers 0-99 on separate lines</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Print the numbers 10-99 on separate lines</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Print the <em>even</em> numbers 10-19 on separate lines</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Print all characters in “hello computer”, all on one line</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&quot;the word&quot;</span><span class="p">:</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Compute the largest Fibonacci number less than 1000 (note the use of parallel assignment)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">0</span>
-<span class="k">while</span> <span class="n">a</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">:</span>
-		<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="n">a</span>
-</pre></div>
-</div>
-</li>
+<li><p>How many rows, how many columns?</p></li>
+<li><p>Is the data rectangular (are all rows the same length?)</p></li>
+<li><p>What types of data? (Numerical, categorical?)</p></li>
+<li><p>What domain of data (numerical: min and max, precision, mean, variance; categorical: number of categories)</p></li>
+<li><p>Any missing data?</p></li>
+<li><p>Is the file clean (read/write errors? paragraphs of text before or after? anything else weird?)</p></li>
+<li><p>Find meaning: What do the columns are rows mean? Are there headers? Are they defined?</p></li>
+<li><p>What is the source? Is this data reliable?</p></li>
+<li><p>Here’s a list of the names of the <span class="xref myst">Weather columns</span></p></li>
 </ul>
 </section>
-<section id="python-lists">
-<h2><span class="section-number">4.2. </span>Python Lists<a class="headerlink" href="#python-lists" title="Link to this heading">#</a></h2>
-<p>Python’s regular list data type is not a true array, such as you would find in C or Java. An array is, properly, fixed length and single type. Python uses <em>lists</em> which are dynamic (auto-resizing) and can contain <em>any</em> type. For example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">l2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bird&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mf">10.3</span><span class="p">,</span><span class="s2">&quot;cow&quot;</span><span class="p">]</span>
-<span class="n">l3</span> <span class="o">=</span> <span class="p">[</span><span class="n">l1</span><span class="p">,</span><span class="n">l2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l3</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="o">-</span><span class="mf">10.3</span>
-<span class="mi">2</span>
-</pre></div>
-</div>
-<p>You see lists can even contain lists. Here are some familiar tropes in Python</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="c1"># a list of 10 zeros</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)):</span>
-	<span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>  <span class="c1"># replace the zeros with the index</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">):</span>
-	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1"># add more elements to l</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">):</span>
-	<span class="n">l</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># another way to add</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This prints the integers from 0 to 29 inclusive.</p>
-<p>Lists are very flexible and there are many operations that are easy to do such as sort, find, replace, merge, delete. If you want to perform a list operation, look it up in online and see if it is already a built-in operation</p>
+<section id="analyse-the-data">
+<h2><span class="section-number">2.2. </span>Analyse the data<a class="headerlink" href="#analyse-the-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What question are you asking?</p></li>
+<li><p>What does the data say about the question?</p></li>
+<li><p>Repeat the last 2 steps as needed!</p></li>
+</ul>
 </section>
-<section id="comprehensions">
-<h2><span class="section-number">4.3. </span>Comprehensions<a class="headerlink" href="#comprehensions" title="Link to this heading">#</a></h2>
-<p>Comprehensions are beautiful and lovely ways to build lists quickly. I’ll just give a couple examples here</p>
-<p>This code</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>can be replaced with this comprehension</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-</pre></div>
-</div>
-<p>It is quite lovely, isn’t it. It reads like a math set definition</p>
-<div class="math notranslate nohighlight">
-\[ L = \{i^2 \; | \;  0 \leq i &lt; 10\}\]</div>
-<p>And make great tools for plotting, say</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">628</span><span class="p">)]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">628</span><span class="p">)]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>will plot one period of a sine curve.</p>
-<p>In practice, numerical algorithms will use <code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">arrays</span></code> instead of python lists because they are much much faster and work like traditional C arrays. But lists still come in extremely handy when you need to collect data and speed is not a priority.</p>
+<section id="jupyter-notebook">
+<h2><span class="section-number">2.3. </span>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Follow this link to a <a class="reference external" href="https://mybinder.org/v2/gh/AET-CS/ML-binder/HEAD?labpath=weather.ipynb">jupyter notebook</a></p></li>
+<li><p>I believe you can save and open notebooks from this interface, as long as you are using the same Chrome profile and history (it uses local storage to save state).</p></li>
+</ul>
+</section>
+<section id="homework">
+<h2><span class="section-number">2.4. </span>Homework<a class="headerlink" href="#homework" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Open the jupyter notebook above from class on <a class="reference external" href="http://mybinder.org">mybinder.org</a> (or you can run it locally as <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in your <code class="docutils literal notranslate"><span class="pre">ml</span></code> folder on WSL. Make sure to copy the notebook to your <code class="docutils literal notranslate"><span class="pre">ml</span></code> folder first – <a class="reference internal" href="#../lessons/weather.ipynb"><span class="xref myst">download it</span></a>).</p></li>
+<li><p>Devise a different way to analyse the question about the weather in Leesburg and try to analyse it using pandas. What conclusion can you draw?</p></li>
+<li><p>Make some interesting plots from this dataset. You will need to read up on plotting in dataframes using pandas and possibly some things about pyplot.</p></li>
+<li><p>Consider the <a class="reference download internal" download="" href="../_downloads/1337bdddeb6a1d91a6967364f28081c3/london_weather.csv"><span class="xref download myst">London Weather dataset</span></a>. Investigate the question “Has the weather in London gotten worse in the last 50 years?” Analyse the data and make a claim that you can support. Source for dataset: <a class="reference external" href="https://www.kaggle.com/datasets/emmanuelfwerr/london-weather-data">https://www.kaggle.com/datasets/emmanuelfwerr/london-weather-data</a>, which retrieved the data from <a class="reference external" href="https://www.ecad.eu/dailydata/index.php">https://www.ecad.eu/dailydata/index.php</a>.</p></li>
+<li><p>Be prepared to discuss your findings and present to the class if asked to! (Your research doesn’t need to be profound but I do need to see you’re learning how to use <code class="docutils literal notranslate"><span class="pre">pandas</span></code>).</p></li>
+<li><p>To be safe, you should download any notebooks you create on <code class="docutils literal notranslate"><span class="pre">mybinder.org</span></code> because I don’t know how reliable its storage system is.</p></li>
+<li><p>WSL Problems: <span class="xref myst">Fix posted!</span></p></li>
+<li><p><strong>In general</strong> I’m always happy to answer homework questions. <em>Remind</em> is the best way to reach me in the evening so don’t shy away from asking. If I can’t help, I’ll say so. Otherwise I’ll try my best!</p></li>
+</ul>
 </section>
 </section>
 
@@ -551,20 +492,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="notebooks/Bayes_Theorem_Student.html"
+       href="Computer_Setup.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Bayes’ Theorem</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Setting up your computer</p>
       </div>
     </a>
     <a class="right-next"
-       href="Linear_regression_derivation.html"
+       href="notebooks/Bayes_Theorem_Student.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Linear Regression</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Bayes’ Theorem</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -584,9 +525,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-loops">4.1. Python Loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-lists">4.2. Python Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensions">4.3. Comprehensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-data">2.1. Look at the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-the-data">2.2. Analyse the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">2.3. Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">2.4. Homework</a></li>
 </ul>
   </nav></div>
 

@@ -1,5 +1,5 @@
 
-# Exploring data
+# Exploring Weather Data
 
 The file [weather-daylight.csv](../data/weather-daylight.csv) contains observational weather data for Leesburg, VA. We want to
 analyze the hypothesis "the fall of 2023 had more cloudy and rainy weekends than normal."
@@ -9,9 +9,8 @@ What questions do you have? What pre-processing is relevant?
 What types of calculations would support or refute the claim? Do you know how to make
 those calculations in Python or another language or tool?
 
-## Look at It! LOOK at IT!
-
-(Bonus points if you know the Seinfeld reference). The first thing to do is just look at the data set. What do you see? Here are some questions you should ask?
+## Look at the data
+The first thing to do is just look at the data set. What do you see? Here are some questions you should ask.
 - How many rows, how many columns?
 - Is the data rectangular (are all rows the same length?)
 - What types of data? (Numerical, categorical?)
@@ -20,9 +19,9 @@ those calculations in Python or another language or tool?
 - Is the file clean (read/write errors? paragraphs of text before or after? anything else weird?)
 - Find meaning: What do the columns are rows mean? Are there headers? Are they defined?
 - What is the source? Is this data reliable?
-- **[Weather columns](../data/weather-columns.md)**
+- Here's a list of the names of the [Weather columns](../data/weather-columns.md)
 
-## Analyse it
+## Analyse the data
 - What question are you asking?
 - What does the data say about the question?
 - Repeat the last 2 steps as needed!

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Quick Jupyter Intro and Python Loops &#8212; Machine Learning for Research</title>
+    <title>1. Setting up your computer &#8212; Machine Learning for Research</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/jupyter-python-intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/Computer_Setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Linear Regression" href="Linear_regression_derivation.html" />
-    <link rel="prev" title="3. Bayes’ Theorem" href="notebooks/Bayes_Theorem_Student.html" />
+    <link rel="next" title="2. Exploring Weather Data" href="Exploring_Weather_Data.html" />
+    <link rel="prev" title="Machine Learning" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,14 +180,14 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Computer_Setup.html">1. Setting up your computer</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Setting up your computer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Exploring_Weather_Data.html">2. Exploring Weather Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Bayes_Theorem_Student.html">3. Bayes’ Theorem</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-python-intro.html">4. Quick Jupyter Intro and Python Loops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linear_regression_derivation.html">5. Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Least_Squares.html">6. Linear Least Squares</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation_Coefficient.html">7. Correlation Coefficient</a></li>
@@ -301,7 +299,7 @@
       
       
       
-      <li><a href="../_sources/lessons/jupyter-python-intro.md" target="_blank"
+      <li><a href="../_sources/lessons/Computer_Setup.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Quick Jupyter Intro and Python Loops</h1>
+    <h1>Setting up your computer</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,9 +393,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-loops">4.1. Python Loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-lists">4.2. Python Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensions">4.3. Comprehensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macintosh-install">1.1. Macintosh Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-install">1.2. Linux Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-install-wsl">1.3. Windows Install (WSL)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-option-last-resort">1.3.1. Anaconda Option (last resort)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -409,114 +410,43 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="quick-jupyter-intro-and-python-loops">
-<h1><span class="section-number">4. </span>Quick Jupyter Intro and Python Loops<a class="headerlink" href="#quick-jupyter-intro-and-python-loops" title="Link to this heading">#</a></h1>
-<p>Jupyter notebook is arranged into cells. Cells can contain Input (computations/code), Output and Markdown (text). A cell can be <em>selected</em> or <em>active</em>. To <em>select</em> a cell, click to the left of it and it should highlight with a colored border. To activate a cell, click inside of it so the cursor is visible. To run a code cell, or render a text cell, type <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>.</p>
-<p>When a cell is selected you can do cell operations by typing single letters such as</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> add a cell above this one</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> add a cell below this one</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> cut the cell to the clipboard</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> copy the cell to the clipboard</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">V</span></code> paste the cell on the clipboard</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> delete the cell</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> convert a cell to markdown style</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code> convert a markdown cell back to Input style</p></li>
-</ul>
-<p>You can also drag a selected cell around the notebook with the mouse. You should also get familiar with the menu bar and toolbars. There are several useful operations hidden there. For example, <em>rerun all cells</em> is handy as is <em>Clear Outputs of all cells</em></p>
-<section id="python-loops">
-<h2><span class="section-number">4.1. </span>Python Loops<a class="headerlink" href="#python-loops" title="Link to this heading">#</a></h2>
-<p>I’ll show some basic examples of how to do things in python. You may want to run these in Jupyter to verify.</p>
-<ul>
-<li><p>Print the numbers 0-99 on separate lines</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Print the numbers 10-99 on separate lines</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Print the <em>even</em> numbers 10-19 on separate lines</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Print all characters in “hello computer”, all on one line</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&quot;the word&quot;</span><span class="p">:</span>
-	<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>Compute the largest Fibonacci number less than 1000 (note the use of parallel assignment)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">0</span>
-<span class="k">while</span> <span class="n">a</span><span class="o">&lt;</span><span class="mi">1000</span><span class="p">:</span>
-		<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="n">a</span>
-</pre></div>
-</div>
-</li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-your-computer">
+<h1><span class="section-number">1. </span>Setting up your computer<a class="headerlink" href="#setting-up-your-computer" title="Link to this heading">#</a></h1>
+<p>Since one goal of this course is to equip you with the skills to do original research in machine learning using the
+best-in-class tools, we want to start out using the most commonly used tools and environments in the industry. Without a doubt
+Linux and Mac (because of its near perfect compatibility with Linux) are the preferred operating systems for
+machine learning research. If you have a linux or Mac machine, setup will we very easy. If you have windows, you’ll want to
+install WSL (Windows Subsystem for Linux) to give you a linux layer running close to native hardware.</p>
+<section id="macintosh-install">
+<h2><span class="section-number">1.1. </span>Macintosh Install<a class="headerlink" href="#macintosh-install" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">miniconda</span></code> to manage your python environments using <a class="reference external" href="https://docs.anaconda.com/miniconda/#quick-command-line-install">instructions here</a></p></li>
+<li><p>Create an environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">ML_Class</span> <span class="pre">python-3.11.10</span></code></p></li>
+<li><p>activate the envirnoment <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">ML_Class</span></code></p></li>
+<li><p>create a directory for your work: <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">ML_Class</span></code> and <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">ML_Class</span></code></p></li>
+<li><p>Copy <a class="reference download internal" download="" href="../_downloads/b4ef698db8ca845e5845c4618278f29a/requirements.txt"><span class="xref download myst">this file</span></a> to your folder <code class="docutils literal notranslate"><span class="pre">~/ml</span></code> as <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p></li>
+<li><p>Install the libraries <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p>Everything should install with no errors (warnings are OK.)</p></li>
+<li><p>See if jupyter is working: <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> (should open a browser)</p></li>
+</ol>
 </section>
-<section id="python-lists">
-<h2><span class="section-number">4.2. </span>Python Lists<a class="headerlink" href="#python-lists" title="Link to this heading">#</a></h2>
-<p>Python’s regular list data type is not a true array, such as you would find in C or Java. An array is, properly, fixed length and single type. Python uses <em>lists</em> which are dynamic (auto-resizing) and can contain <em>any</em> type. For example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">l2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bird&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mf">10.3</span><span class="p">,</span><span class="s2">&quot;cow&quot;</span><span class="p">]</span>
-<span class="n">l3</span> <span class="o">=</span> <span class="p">[</span><span class="n">l1</span><span class="p">,</span><span class="n">l2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l3</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="o">-</span><span class="mf">10.3</span>
-<span class="mi">2</span>
-</pre></div>
-</div>
-<p>You see lists can even contain lists. Here are some familiar tropes in Python</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="c1"># a list of 10 zeros</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)):</span>
-	<span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>  <span class="c1"># replace the zeros with the index</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">):</span>
-	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1"># add more elements to l</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">):</span>
-	<span class="n">l</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># another way to add</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This prints the integers from 0 to 29 inclusive.</p>
-<p>Lists are very flexible and there are many operations that are easy to do such as sort, find, replace, merge, delete. If you want to perform a list operation, look it up in online and see if it is already a built-in operation</p>
+<section id="linux-install">
+<h2><span class="section-number">1.2. </span>Linux Install<a class="headerlink" href="#linux-install" title="Link to this heading">#</a></h2>
+<p>Follow the Mac instructions</p>
 </section>
-<section id="comprehensions">
-<h2><span class="section-number">4.3. </span>Comprehensions<a class="headerlink" href="#comprehensions" title="Link to this heading">#</a></h2>
-<p>Comprehensions are beautiful and lovely ways to build lists quickly. I’ll just give a couple examples here</p>
-<p>This code</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-	<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>can be replaced with this comprehension</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-</pre></div>
-</div>
-<p>It is quite lovely, isn’t it. It reads like a math set definition</p>
-<div class="math notranslate nohighlight">
-\[ L = \{i^2 \; | \;  0 \leq i &lt; 10\}\]</div>
-<p>And make great tools for plotting, say</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">628</span><span class="p">)]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">628</span><span class="p">)]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>will plot one period of a sine curve.</p>
-<p>In practice, numerical algorithms will use <code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">arrays</span></code> instead of python lists because they are much much faster and work like traditional C arrays. But lists still come in extremely handy when you need to collect data and speed is not a priority.</p>
+<section id="windows-install-wsl">
+<h2><span class="section-number">1.3. </span>Windows Install (WSL)<a class="headerlink" href="#windows-install-wsl" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Install WSL2 if you haven’t already (Windows Subsystem for Linux) following <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">these instructions</a>. Be sure to select Ubuntu 22 for your distribution (unless you are sure you will never need to ask me for help).</p></li>
+<li><p>Enter the WSL shell and then follow the Mac instructions</p></li>
+<li><p>WSL Problems: <span class="xref myst">Fix posted!</span></p></li>
+</ol>
+<section id="anaconda-option-last-resort">
+<h3><span class="section-number">1.3.1. </span>Anaconda Option (last resort)<a class="headerlink" href="#anaconda-option-last-resort" title="Link to this heading">#</a></h3>
+<p>If the WSL route is too complicated for now or just not working, Anaconda will get you up
+and running. The reason this is not recommended is that Anaconda installs a LOT of software and does a LOT of setup behind the scenes. And when you want to change something, or bypass Anaconda for a reason, it can be tricky to disable it. That said, it is very popular and good at what it does.</p>
+<p>Install <a class="reference external" href="https://anaconda.cloud/api/iam/email/verified/1a8a9aa0-e28f-4ceb-9ca4-b29dde699d5c">Anaconda for Windows</a></p>
+</section>
 </section>
 </section>
 
@@ -551,20 +481,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="notebooks/Bayes_Theorem_Student.html"
+       href="../intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Bayes’ Theorem</p>
+        <p class="prev-next-title">Machine Learning</p>
       </div>
     </a>
     <a class="right-next"
-       href="Linear_regression_derivation.html"
+       href="Exploring_Weather_Data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Linear Regression</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Exploring Weather Data</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -584,9 +514,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-loops">4.1. Python Loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-lists">4.2. Python Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensions">4.3. Comprehensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macintosh-install">1.1. Macintosh Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-install">1.2. Linux Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-install-wsl">1.3. Windows Install (WSL)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-option-last-resort">1.3.1. Anaconda Option (last resort)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
