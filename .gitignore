@@ -1,4 +1,4 @@
-env
+env*
 solutions
 scratch
 .ipynb_checkpoints
