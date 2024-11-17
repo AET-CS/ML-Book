@@ -1,29 +1,41 @@
-name: Deploy Jupyter Book
+name: Deploy Pre-Built Jupyter Book
 
 on:
   push:
     branches:
-      - main
+      - main  # Adjust if your source branch is different
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensure full history for gh-pages branch
 
-      - name: Deploy to docs folder
+      # Push the contents of _build/html to gh-pages
+      - name: Deploy to GitHub Pages
         run: |
-          mkdir -p docs
-          rm -rf docs/*
-          cp -r ML-book/_build/html/* docs/
+          # Ensure the ML-book/_build/html directory exists
+          if [ ! -d "ML-book/_build/html" ]; then
+            echo "Error: ML-book/_build/html directory does not exist. Ensure you build the book locally before deploying."
+            exit 1
+          fi
 
-      - name: Commit and push changes
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "<>"
-          git add docs
-          git commit -m "Update GitHub Pages"
-          git push
+          # Initialize gh-pages branch if it doesn't exist
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan gh-pages || git checkout gh-pages
+
+          # Remove old files and copy new ones
+          rm -rf *
+          cp -r _build/html/* .
+          touch .nojekyll  # Prevent GitHub Pages from using Jekyll
+
+          # Commit and push changes
+          git add .
+          git commit -m "Deploy pre-built Jupyter Book"
+          git push --force origin gh-pages
