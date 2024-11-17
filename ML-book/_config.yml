@@ -83,7 +83,7 @@ launch_buttons:
 
 repository:
   url                       : https://github.com/AET-CS/ML-Book/   # The URL to your book's repository
-  path_to_book              : "ML-book/_build/html"  # A path to your book's folder, relative to the repository root.
+  path_to_book              : "ML-book/"  # A path to your book's notebook folder, relative to the repository root.
   branch                    : master  # Which branch of the repository should be used when creating links
 
 #######################################################################################
