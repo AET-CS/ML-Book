@@ -38,9 +38,12 @@ And solve
 
 $$\left\{\begin{array}{l}\dfrac{\partial R S S}{\partial a}=0 \\[20pt] \dfrac{\partial R S S}{\partial b}=0\end{array} \Rightarrow\left\{\begin{array}{l}\left.\sum (\tilde{y}_{i}-y_{i}\right) x_{i}=0 \\[10pt] \sum\left(\tilde{y}_{i}-y_{i}\right)=0\end{array}\right.\right.$$
 
-Since $\tilde{y}_{i} = ax_i+b$
+Since $\tilde{y}_{i} = ax_i+b$,
+
 $$\sum\left(a x_{i}+b-y_{i}\right) x_{i}=0 \Rightarrow a \sum x_{i}^{2}+b \sum x_{i}=\sum y_{i} x_{j}$$
+
 and
+
 $$\sum\left(a x_{i}+b-{y}_{i}\right)=0 \Rightarrow a \sum x_{i}+b \sum 1=\sum y_{i}$$
 
 by Cramer's rule
@@ -67,7 +70,10 @@ $$
 since $\sum_{i=1}^{n} 1=n$
 
 Taking determinants,
+
 $$a=\frac{n \sum x_{i} y_{i}-\left(\sum x_{i}\right)\left(\sum y_{i}\right)}{n \sum x_{i}^{2}-\left(\sum x_{i}\right)^{2}}$$
+
+and
 
 $$
 b=\frac{\sum y_{i} \sum x_{i}^{2}-\sum x_{i} \sum x_{i} y_{i}}{n \sum x_{i}^{2}-\left(\sum x_{i}\right)^{2}}
@@ -97,6 +103,7 @@ $$
 
 
 Manipulating the denominator of the equation for $a$ on the previous page,
+
 $$
 \begin{aligned}
 n \sum x_{i}^{2}-\left(\sum x_{i}\right)^{2} & =n^{2}\left(\frac{1}{n} \sum x_{i}^{2}-\left(\frac{\sum x_{i}}{n}\right)^{2}\right) \\
@@ -106,6 +113,7 @@ n \sum x_{i}^{2}-\left(\sum x_{i}\right)^{2} & =n^{2}\left(\frac{1}{n} \sum x_{i
 $$
 
 And the numerator
+
 $$
 \begin{aligned}
 n \sum x_{i} y_{i}-\sum x_{i} \sum y_{i} \\

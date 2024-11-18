@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>15.2. Gauss Presentation &#8212; Machine Learning for Research</title>
+    <title>4. Bayes Theorem &#8212; Machine Learning for Research</title>
   
   
   
@@ -57,11 +57,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/Gauss';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/Bayes_Theorem_Notes';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="15.3. Matrix Inversion" href="inversion.html" />
-    <link rel="prev" title="15.1. Strassen’s Algorithm (Optional Extension)" href="Strassen-Lab.html" />
+    <link rel="next" title="5. Lab: Bayes’ Theorem" href="notebooks/Bayes_Theorem_Student.html" />
+    <link rel="prev" title="3. Quick Jupyter Intro and Python Loops" href="jupyter-python-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,49 +187,48 @@
 <li class="toctree-l1"><a class="reference internal" href="Exploring_Weather_Data.html">2. Exploring Weather Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="jupyter-python-intro.html">3. Quick Jupyter Intro and Python Loops</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bayes_Theorem_Notes.html">4. Notes: Bayes' Theorem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Notes: Bayes' Theorem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Bayes_Theorem_Student.html">5. Lab: Bayes' Theorem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linear_regression_derivation.html">6. Notes: Linear regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Least_Squares.html">7. Lab: Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation_Coefficient.html">8. Notes: Correlation Coefficient</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra in Python</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Student.html">9. Lab: Linear Algebra in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Intro_to_Matrices_in_NumPy.html">10. Notes: Matrix Operations in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Matrices_Index_Warmup_Student.html">11. Lab: Matrix Challenge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Gaussian_Elimination_Notes.html">12. Notes: Gaussian Elimination</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Gaussian_Elimination_Student.html">13. Lab: Gaussian Elimination</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/LogLogRegression.html">14. Notes: Log-Log Regression</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Optional.html">15. Optional Topics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Strassen-Lab.html">15.1. Lab: Strassen's Algorithm</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">15.2. Notes: Gauss's Method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inversion.html">15.3. Lab: Matrix Inversion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/Running_Time_Analysis.html">15.4. Notes: Running Time Analysis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="notebooks/LogLogRegression.html">14. Notes: Log-Log Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Strassen-Lab.html">14.4. Lab: Strassen's Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Gauss.html">14.5. Notes: Gauss's Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inversion.html">14.6. Lab: Matrix Inversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/Running_Time_Analysis.html">14.7. Notes: Running Time Analysis</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html">16. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html">15. Life Expectancy</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2.html">18. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coordinates.html">19. Coordinate Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA%20Matrices.html">20. S2 = S.copy()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA.html">21. PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="picture.html">22. Picture Compression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Cancer_Logistic_Student.html">23. Cancer Data Logistic Regression (Student)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2.html">17. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinates.html">18. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA%20Matrices.html">19. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA.html">20. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="picture.html">21. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Cancer_Logistic_Student.html">22. Cancer Data Logistic Regression (Student)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">What Is?</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy.html">24. Life Expectancy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2_Student.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cw02.html">26. Classwork 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Bayes.html">27. The Bayes Error Rate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Weather.html">28. Cloudy Days in Leesburg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/weather-teacher.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy.html">23. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2_Student.html">24. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw02.html">25. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Bayes.html">26. The Bayes Error Rate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Weather.html">27. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/weather-teacher.html">28. Cloudy Days in Leesburg</a></li>
 </ul>
 
     </div>
@@ -297,7 +298,7 @@
       
       
       
-      <li><a href="../_sources/lessons/Gauss.md" target="_blank"
+      <li><a href="../_sources/lessons/Bayes_Theorem_Notes.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +369,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -379,11 +382,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Gauss Presentation</h1>
+    <h1>Bayes Theorem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-test-result">4.1. A test result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2. Bayes Theorem</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -393,10 +405,53 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="gauss-presentation">
-<h1><span class="section-number">15.2. </span>Gauss Presentation<a class="headerlink" href="#gauss-presentation" title="Link to this heading">#</a></h1>
-<p>Carl Friedrich Gauss was sickeningly brilliant. Prepare a 10-15 minute lecture on the
-accomplishments of Gauss, focusing primarily on mathematics. Give a moderately technical presentation that your classmates will understand that highlight a few of his greatest hits. This should be a whiteboard presentation – not powerpoint! (If you need a couple slides to show complex diagrams that would be OK, but not needed). This should be presented next Tuesday or Thursday and the beginning of class.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bayes-theorem">
+<h1><span class="section-number">4. </span>Bayes Theorem<a class="headerlink" href="#bayes-theorem" title="Link to this heading">#</a></h1>
+<p>We’ll begin by challenging our common intuition about the concept of “accuracy” specifically when accuracy is applied to a diagnostic test.</p>
+<section id="a-test-result">
+<h2><span class="section-number">4.1. </span>A test result<a class="headerlink" href="#a-test-result" title="Link to this heading">#</a></h2>
+<p>Carl goes to the doctor and takes a test to see if he has an infection. The general incidence rate of the infection in the local population is 1%. The test he is taking to determine the presence of the infection has an accuracy of 97%. If Carl tests positive, how concerned should he be that he
+has the infection?</p>
+<p>To measure Carl’s “worry coefficient” we want to know <span class="math notranslate nohighlight">\(P(I | +)\)</span>, or, the probability that he has the infection, given that he had
+a positive test result. We know <span class="math notranslate nohighlight">\(P( + | I) = 0.97\)</span>, because the test is 97% accurate so if he has it, the test will be positive 97% of the time.</p>
+<p>Logically the ratio needed is the number of people who have a positive test result and are infected, divided by the number of people who have a positive test result total. Out of 1000 people, 10 of them is infected. 97% of the 10 will get a positive test result, and 3% of the 990 uninfected will get a positive test result. This says</p>
+<div class="math notranslate nohighlight">
+\[\#\{\textrm{positive test cases}\} = (0.97)(10) + (0.03)(990) = 9.7+29.7 = 39.4\]</div>
+<p>and the number of infected with a positive test result is</p>
+<div class="math notranslate nohighlight">
+\[\#\{\textrm{true positive test results}\} = (10)(0.97) = 9.7\]</div>
+<p>Giving a worry coefficient of <span class="math notranslate nohighlight">\(9.7/39.4=0.246\)</span>, or a 24.6% chance of being infected given a positive test result.</p>
+<p>So what can be made of the “97%” accuracy claim? Well it sounds great, but it’s wrong 3% of the time. And only 1% of the population has an infection. So the size of the error is actually larger than the number of infected people. High accuracy on rare events can be misleading and requires you to know more context to properly interpret. This is an early example of a critical lesson in machine learning: <strong>accuracy alone is not an informative, and is occasionally a deceptive, metric</strong>.</p>
+<p>Before we delve too deeply into variations on accuracy, let’s pause to look at Bayes’ Theorem, which tells us how to compute <span class="math notranslate nohighlight">\(P(I|+)\)</span> if we know <span class="math notranslate nohighlight">\(P(+|I)\)</span>.</p>
+</section>
+<section id="id1">
+<h2><span class="section-number">4.2. </span>Bayes Theorem<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Bayes’ Theorem gives us a way to <em>invert</em> conditional probabilities. The formula comes from the definition of conditional probability</p>
+<div class="math notranslate nohighlight">
+\[P(A|B) = \dfrac{P(A \cap B)}{P(B)}\]</div>
+<p>this implies the following</p>
+<div class="math notranslate nohighlight">
+\[P(A \cap B) = P(A|B)P(B) = P(B|A)P(A)\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(P(A|B)\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[P(A|B) = \dfrac{P(B|A)P(A)}{P(B)}\]</div>
+<p>Though this is the final form, in practice you will need to compute <span class="math notranslate nohighlight">\(P(B)\)</span> using the following</p>
+<div class="math notranslate nohighlight">
+\[P(B) = P(B|A)P(A) + P(B|\overline{A})P(\overline{A})\]</div>
+<p>which says the probability of <span class="math notranslate nohighlight">\(B\)</span> is the sum of the probability of <span class="math notranslate nohighlight">\(B\)</span> given <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> given not <span class="math notranslate nohighlight">\(A\)</span>. (<span class="math notranslate nohighlight">\(A\)</span> is either true or false so these are the only two options)</p>
+<p>Applied to the above example</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+P(I|+) &amp;= \dfrac{P(+|I) P(I)}{P(+)} \\
+       &amp;= \dfrac{(0.97)(0.01)}{P(+|I)P(I) + P(+|\bar{I})P(\bar{I})} \\
+			 			 &amp;= \dfrac{(0.97)(0.01)}{(0.97)(0.01) + (0.03)(0.99)} \\
+			 &amp;= 0.2462
+\end{align*}
+\end{split}\]</div>
+<p>In the accompanying lab you will explore Bayes’ Theorem and the ways in which the
+final result depends on both the accuracy of the test and the incidence rate of the infection.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -430,20 +485,20 @@ accomplishments of Gauss, focusing primarily on mathematics. Give a moderately t
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Strassen-Lab.html"
+       href="jupyter-python-intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15.1. </span>Strassen’s Algorithm (Optional Extension)</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Quick Jupyter Intro and Python Loops</p>
       </div>
     </a>
     <a class="right-next"
-       href="inversion.html"
+       href="notebooks/Bayes_Theorem_Student.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15.3. </span>Matrix Inversion</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Lab: Bayes’ Theorem</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -453,6 +508,22 @@ accomplishments of Gauss, focusing primarily on mathematics. Give a moderately t
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-test-result">4.1. A test result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2. Bayes Theorem</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

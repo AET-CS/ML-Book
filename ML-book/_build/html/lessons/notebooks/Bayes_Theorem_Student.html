@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Bayes’ Theorem &#8212; Machine Learning for Research</title>
+    <title>5. Lab: Bayes’ Theorem &#8212; Machine Learning for Research</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/notebooks/Bayes_Theorem_Student';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4. Quick Jupyter Intro and Python Loops" href="../jupyter-python-intro.html" />
-    <link rel="prev" title="2. Exploring Weather Data" href="../Exploring_Weather_Data.html" />
+    <link rel="next" title="6. Linear Regression" href="../Linear_regression_derivation.html" />
+    <link rel="prev" title="4. Bayes Theorem" href="../Bayes_Theorem_Notes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -188,50 +188,47 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measures of Closeness</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Bayes’ Theorem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jupyter-python-intro.html">4. Quick Jupyter Intro and Python Loops</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Linear_regression_derivation.html">5. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Least_Squares.html">6. Linear Least Squares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Correlation_Coefficient.html">7. Correlation Coefficient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter-python-intro.html">3. Quick Jupyter Intro and Python Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bayes_Theorem_Notes.html">4. Notes: Bayes' Theorem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Lab: Bayes' Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Linear_regression_derivation.html">6. Notes: Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Least_Squares.html">7. Lab: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Correlation_Coefficient.html">8. Notes: Correlation Coefficient</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra in Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Matrices_Student.html">8. Linear Algebra and Python Lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Intro_to_Matrices_in_NumPy.html">9. Introduction to Matrices in NumPy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Matrices_Index_Warmup_Student.html">10. Matrix indices warmup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Gaussian_Elimination_Student.html">11. Gaussian Elimination</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LogLogRegression.html">12. Log-Log Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Strassen-Lab.html">13. Strassen’s Algorithm (Optional Extension)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Gauss.html">14. Gauss Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../inversion.html">15. Matrix Inversion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Running_Time_Analysis.html">16. Running Time Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matrices_Student.html">9. Lab: Linear Algebra in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_to_Matrices_in_NumPy.html">10. Notes: Matrix Operations in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matrices_Index_Warmup_Student.html">11. Lab: Matrix Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gaussian_Elimination_Notes.html">12. Notes: Gaussian Elimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gaussian_Elimination_Student.html">13. Lab: Gaussian Elimination</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="LogLogRegression.html">14. Notes: Log-Log Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Strassen-Lab.html">14.4. Lab: Strassen's Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gauss.html">14.5. Notes: Gauss's Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inversion.html">14.6. Lab: Matrix Inversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Running_Time_Analysis.html">14.7. Notes: Running Time Analysis</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../reading.html">17. Reading for Research</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Hobo_Student.html">18. Hobo Data, Student Version</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ML_Book_Club.html">19. ML Book Club</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mushroom_Student.html">20. Poisoned Mushroom Dataset</a></li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">21. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">15. Life Expectancy</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">23. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">24. Coordinate Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">25. S2 = S.copy()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA.html">26. PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../picture.html">27. Picture Compression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">28. Cancer Data Logistic Regression (Student)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">17. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">18. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">19. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">20. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../picture.html">21. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">22. Cancer Data Logistic Regression (Student)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">What Is?</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">29. Life Expectancy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">30. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cw02.html">31. Classwork 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">32. The Bayes Error Rate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Weather.html">33. Cloudy Days in Leesburg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">34. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">23. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">24. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw02.html">25. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">26. The Bayes Error Rate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Weather.html">27. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">28. Cloudy Days in Leesburg</a></li>
 </ul>
 
     </div>
@@ -434,7 +431,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Bayes’ Theorem</h1>
+    <h1>Lab: Bayes’ Theorem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -444,10 +441,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-plot-a-venn-diagram">3.1. Exercise 1: Plot a Venn Diagram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-compute-bayes-probabilities">3.2. Exercise 2: Compute Bayes’ Probabilities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-plot">3.3. Exercise 3: Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-beautify-plots">3.4. Exercise 4: Beautify plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-plot-a-venn-diagram">5.1. Exercise 1: Plot a Venn Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-compute-bayes-probabilities">5.2. Exercise 2: Compute Bayes’ Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-plot">5.3. Exercise 3: Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-beautify-plots">5.4. Exercise 4: Beautify plots</a></li>
 </ul>
             </nav>
         </div>
@@ -459,23 +456,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bayes-theorem">
-<h1><span class="section-number">3. </span>Bayes’ Theorem<a class="headerlink" href="#bayes-theorem" title="Link to this heading">#</a></h1>
-<p>Bayes’ Theorem gives us a way to <em>invert</em> conditional probabilities. The formula comes from the definition of conditional probability</p>
-<div class="math notranslate nohighlight">
-\[P(A|B) = \dfrac{P(A \cap B)}{P(B)}\]</div>
-<p>this implies the following</p>
-<div class="math notranslate nohighlight">
-\[P(A \cap B) = P(A|B)P(B) = P(B|A)P(A)\]</div>
-<p>Solving for <span class="math notranslate nohighlight">\(P(A|B)\)</span> we get</p>
-<div class="math notranslate nohighlight">
-\[P(A|B) = \dfrac{P(B|A)P(A)}{P(B)}\]</div>
-<p>Though this is the final form, in practice you will need to compute <span class="math notranslate nohighlight">\(P(B)\)</span> using the following</p>
-<div class="math notranslate nohighlight">
-\[P(B) = P(B|A)P(A) + P(B|\overline{A})P(\overline{A})\]</div>
-<p>which says the probability of <span class="math notranslate nohighlight">\(B\)</span> is the sum of the probability of <span class="math notranslate nohighlight">\(B\)</span> given <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> given not <span class="math notranslate nohighlight">\(A\)</span>. (<span class="math notranslate nohighlight">\(A\)</span> is either true or false so these are the only two options)</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-bayes-theorem">
+<h1><span class="section-number">5. </span>Lab: Bayes’ Theorem<a class="headerlink" href="#lab-bayes-theorem" title="Link to this heading">#</a></h1>
 <section id="exercise-1-plot-a-venn-diagram">
-<h2><span class="section-number">3.1. </span>Exercise 1: Plot a Venn Diagram<a class="headerlink" href="#exercise-1-plot-a-venn-diagram" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Exercise 1: Plot a Venn Diagram<a class="headerlink" href="#exercise-1-plot-a-venn-diagram" title="Link to this heading">#</a></h2>
 <p>Using matplotlib, draw a simple Venn diagram representing two sets <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> with a non-null intersection.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -486,7 +470,7 @@ document.write(`
 </div>
 </section>
 <section id="exercise-2-compute-bayes-probabilities">
-<h2><span class="section-number">3.2. </span>Exercise 2: Compute Bayes’ Probabilities<a class="headerlink" href="#exercise-2-compute-bayes-probabilities" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>Exercise 2: Compute Bayes’ Probabilities<a class="headerlink" href="#exercise-2-compute-bayes-probabilities" title="Link to this heading">#</a></h2>
 <p>We want to replicate the computation carried out in class. If a doctor performs a test that has a given accuracy, for a disease with a given incidence rate, determine the probability that a randomly selected person with a positive test result has the disease. You are given <em>accuracy</em> and <em>incidence</em> as input, both in the range <span class="math notranslate nohighlight">\((0,1]\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -535,7 +519,7 @@ document.write(`
 </div>
 </section>
 <section id="exercise-3-plot">
-<h2><span class="section-number">3.3. </span>Exercise 3: Plot<a class="headerlink" href="#exercise-3-plot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3. </span>Exercise 3: Plot<a class="headerlink" href="#exercise-3-plot" title="Link to this heading">#</a></h2>
 <p>You will create two plots in the section. For a fixed incidence rate, plot the bayes probability as the accuracy of the test ranges from 0 to 100%.</p>
 <p>Then, for a fixed accuracy, plot the bayes probability as the incidence rate increases.</p>
 <p><strong>Note</strong>, to avoid 1/0 errors you’ll probably want to <em>not</em> go all the way to 0 or 1.</p>
@@ -558,7 +542,7 @@ document.write(`
 </div>
 </section>
 <section id="exercise-4-beautify-plots">
-<h2><span class="section-number">3.4. </span>Exercise 4: Beautify plots<a class="headerlink" href="#exercise-4-beautify-plots" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.4. </span>Exercise 4: Beautify plots<a class="headerlink" href="#exercise-4-beautify-plots" title="Link to this heading">#</a></h2>
 <p>Now go back and beautify your plots. Add a title and a legend. Some axis labels. Maybe read about matplotlib styles and change up the colors. Try a different type of  plot. Just experiment some. Results below.</p>
 </section>
 </section>
@@ -594,20 +578,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Exploring_Weather_Data.html"
+       href="../Bayes_Theorem_Notes.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Exploring Weather Data</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Bayes Theorem</p>
       </div>
     </a>
     <a class="right-next"
-       href="../jupyter-python-intro.html"
+       href="../Linear_regression_derivation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Quick Jupyter Intro and Python Loops</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Linear Regression</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -627,10 +611,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-plot-a-venn-diagram">3.1. Exercise 1: Plot a Venn Diagram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-compute-bayes-probabilities">3.2. Exercise 2: Compute Bayes’ Probabilities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-plot">3.3. Exercise 3: Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-beautify-plots">3.4. Exercise 4: Beautify plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-plot-a-venn-diagram">5.1. Exercise 1: Plot a Venn Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-compute-bayes-probabilities">5.2. Exercise 2: Compute Bayes’ Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-plot">5.3. Exercise 3: Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-beautify-plots">5.4. Exercise 4: Beautify plots</a></li>
 </ul>
   </nav></div>
 

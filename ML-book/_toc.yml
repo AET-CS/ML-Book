@@ -14,30 +14,42 @@ parts:
 - caption: Measures of Closeness
   numbered: true
   chapters:
-  - file: lessons/notebooks/Bayes_Theorem_Student
   - file: lessons/jupyter-python-intro
+  - file: lessons/Bayes_Theorem_Notes
+    title: "Notes: Bayes' Theorem"
+  - file: lessons/notebooks/Bayes_Theorem_Student
+    title: "Lab: Bayes' Theorem"
   - file: lessons/Linear_regression_derivation
+    title: "Notes: Linear regression"
   - file: lessons/notebooks/Least_Squares
+    title: "Lab: Linear Regression"
   - file: lessons/Correlation_Coefficient
+    title: "Notes: Correlation Coefficient"
 - caption: Linear Algebra in Python
   numbered: true
   chapters:
   - file: lessons/notebooks/Matrices_Student
+    title: "Lab: Linear Algebra in Python"
   - file: lessons/notebooks/Intro_to_Matrices_in_NumPy
+    title: "Notes: Matrix Operations in Python"
   - file: lessons/notebooks/Matrices_Index_Warmup_Student
+    title: "Lab: Matrix Challenge"
+  - file: lessons/notebooks/Gaussian_Elimination_Notes
+    title: "Notes: Gaussian Elimination"
   - file: lessons/notebooks/Gaussian_Elimination_Student
+    title: "Lab: Gaussian Elimination"
   - file: lessons/notebooks/LogLogRegression
-  - file: lessons/Strassen-Lab
-  - file: lessons/Gauss
-  - file: lessons/inversion
-  - file: lessons/notebooks/Running_Time_Analysis
-- caption: Next Steps
-  numbered: True
-  chapters:
-  - file: lessons/reading
-  - file: lessons/notebooks/Hobo_Student
-  - file: lessons/ML_Book_Club
-  - file: lessons/notebooks/Mushroom_Student
+    title: "Notes: Log-Log Regression"
+  - file: lessons/Optional.md
+    sections:
+      - file: lessons/Strassen-Lab
+        title: "Lab: Strassen's Algorithm"
+      - file: lessons/Gauss
+        title: "Notes: Gauss's Method"
+      - file: lessons/inversion
+        title: "Lab: Matrix Inversion"
+      - file: lessons/notebooks/Running_Time_Analysis
+        title: "Notes: Running Time Analysis"
 
 - caption: Regression
   numbered: true
