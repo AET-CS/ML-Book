@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>23. Cancer Data Logistic Regression (Student) &#8212; Machine Learning for Research</title>
+    <title>25. Cancer Data Logistic Regression (Student) &#8212; Machine Learning for Research</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/notebooks/Cancer_Logistic_Student';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="24. Life Expectancy" href="Life_Expectancy.html" />
-    <link rel="prev" title="22. Picture Compression" href="../picture.html" />
+    <link rel="next" title="26. Life Expectancy" href="Life_Expectancy.html" />
+    <link rel="prev" title="24. Picture Compression" href="../picture.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,29 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Tour of Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Student.html">16. Poisoned Mushroom Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">17. The Bayes Error Rate</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">16. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">18. Life Expectancy</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">18. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">19. Coordinate Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">20. S2 = S.copy()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA.html">21. PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../picture.html">22. Picture Compression</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Cancer Data Logistic Regression (Student)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">20. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">21. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">22. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">23. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../picture.html">24. Picture Compression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. Cancer Data Logistic Regression (Student)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">What Is?</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">24. Life Expectancy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cw02.html">26. Classwork 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">27. The Bayes Error Rate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Weather.html">28. Cloudy Days in Leesburg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">26. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">27. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw02.html">28. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Weather.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">30. Cloudy Days in Leesburg</a></li>
 </ul>
 
     </div>
@@ -440,7 +444,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-work-here">23.1. Start Work Here</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-work-here">25.1. Start Work Here</a></li>
 </ul>
             </nav>
         </div>
@@ -453,7 +457,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cancer-data-logistic-regression-student">
-<h1><span class="section-number">23. </span>Cancer Data Logistic Regression (Student)<a class="headerlink" href="#cancer-data-logistic-regression-student" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">25. </span>Cancer Data Logistic Regression (Student)<a class="headerlink" href="#cancer-data-logistic-regression-student" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -820,7 +824,7 @@ document.write(`
 </div>
 </div>
 <section id="start-work-here">
-<h2><span class="section-number">23.1. </span>Start Work Here<a class="headerlink" href="#start-work-here" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">25.1. </span>Start Work Here<a class="headerlink" href="#start-work-here" title="Link to this heading">#</a></h2>
 <p>Replace lreg with LogisticRegression</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1240,7 +1244,7 @@ of (precision(alpha), recall(alpha)) points. Code is provided to plot the alphas
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Picture Compression</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Picture Compression</p>
       </div>
     </a>
     <a class="right-next"
@@ -1248,7 +1252,7 @@ of (precision(alpha), recall(alpha)) points. Code is provided to plot the alphas
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">24. </span>Life Expectancy</p>
+        <p class="prev-next-title"><span class="section-number">26. </span>Life Expectancy</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1268,7 +1272,7 @@ of (precision(alpha), recall(alpha)) points. Code is provided to plot the alphas
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-work-here">23.1. Start Work Here</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-work-here">25.1. Start Work Here</a></li>
 </ul>
   </nav></div>
 

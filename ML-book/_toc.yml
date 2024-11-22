@@ -50,12 +50,16 @@ parts:
         title: "Lab: Matrix Inversion"
       - file: lessons/notebooks/Running_Time_Analysis
         title: "Notes: Running Time Analysis"
-
+- caption: Quick Tour of Machine Learning
+  numbered: true
+  chapters:
+  - file: lessons/notebooks/Mushroom_Student
+  - file: lessons/notebooks/Mushroom_Bayes
 - caption: Regression
   numbered: true
   chapters:
   - file: lessons/notebooks/Life_Expectancy_Student
-  - file: lessons/notebooks/Life_Part_2
+  - file: lessons/notebooks/Life_Part_2_Student
   - file: lessons/coordinates
   - file: lessons/notebooks/PCA Matrices
   - file: lessons/notebooks/PCA
@@ -66,8 +70,7 @@ parts:
   numbered: True
   chapters:
   - file: lessons/notebooks/Life_Expectancy
-  - file: lessons/notebooks/Life_Part_2_Student
+  - file: lessons/notebooks/Life_Part_2
   - file: lessons/cw02
-  - file: lessons/notebooks/Mushroom_Bayes
   - file: lessons/notebooks/Weather
   - file: lessons/notebooks/weather-teacher

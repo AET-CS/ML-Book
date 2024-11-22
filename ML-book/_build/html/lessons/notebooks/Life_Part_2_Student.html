@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>25. Life Expectancy – Normalization, Regularization, Feature Selection &#8212; Machine Learning for Research</title>
+    <title>20. Life Expectancy – Normalization, Regularization, Feature Selection &#8212; Machine Learning for Research</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/notebooks/Life_Part_2_Student';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="26. Classwork 02" href="../cw02.html" />
-    <link rel="prev" title="24. Life Expectancy" href="Life_Expectancy.html" />
+    <link rel="next" title="21. Coordinate Transformations" href="../coordinates.html" />
+    <link rel="prev" title="18. Life Expectancy" href="Life_Expectancy_Student.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,25 +211,29 @@
 </ul>
 </details></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Tour of Machine Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">16. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Student.html">16. Poisoned Mushroom Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">17. The Bayes Error Rate</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">18. Life Expectancy</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">18. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">19. Coordinate Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">20. S2 = S.copy()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA.html">21. PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../picture.html">22. Picture Compression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">23. Cancer Data Logistic Regression (Student)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">21. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">22. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">23. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../picture.html">24. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">25. Cancer Data Logistic Regression (Student)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">What Is?</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">24. Life Expectancy</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cw02.html">26. Classwork 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">27. The Bayes Error Rate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Weather.html">28. Cloudy Days in Leesburg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">29. Cloudy Days in Leesburg</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">26. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">27. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw02.html">28. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Weather.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">30. Cloudy Days in Leesburg</a></li>
 </ul>
 
     </div>
@@ -442,11 +446,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-linear-model">25.1. First Linear Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-normalization">25.2. Feature Normalization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-collinearity">25.3. Eliminating Collinearity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">25.4. Ridge Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression">25.5. Lasso Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-linear-model">20.1. First Linear Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-normalization">20.2. Feature Normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-collinearity">20.3. Eliminating Collinearity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">20.4. Ridge Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression">20.5. Lasso Regression</a></li>
 </ul>
             </nav>
         </div>
@@ -459,7 +463,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="life-expectancy-normalization-regularization-feature-selection">
-<h1><span class="section-number">25. </span>Life Expectancy – Normalization, Regularization, Feature Selection<a class="headerlink" href="#life-expectancy-normalization-regularization-feature-selection" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">20. </span>Life Expectancy – Normalization, Regularization, Feature Selection<a class="headerlink" href="#life-expectancy-normalization-regularization-feature-selection" title="Link to this heading">#</a></h1>
 <p>Last class we created a linear model for the WHO life expectancy database. Today we will focus on various ways to interpret the model and refine it, specifically by interpreting the importance of each model feature and selecting a subset of features that make our model more interpretable and more extensible.</p>
 <p>Outline</p>
 <ol class="arabic simple">
@@ -580,7 +584,7 @@ document.write(`
 </div>
 </div>
 <section id="first-linear-model">
-<h2><span class="section-number">25.1. </span>First Linear Model<a class="headerlink" href="#first-linear-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">20.1. </span>First Linear Model<a class="headerlink" href="#first-linear-model" title="Link to this heading">#</a></h2>
 <p>Let’s do a vanilla linear regression and check the results. Notice the use of <code class="docutils literal notranslate"><span class="pre">model.score</span></code> to get an <span class="math notranslate nohighlight">\(r^2\)</span> score. Each model has a different <code class="docutils literal notranslate"><span class="pre">score</span></code> method (usually <span class="math notranslate nohighlight">\(r^2\)</span> for regression). Also note the use of python “f-string” which interpolate variable values into strings. There is also a format specifier in this case indicating 3 decimal places to be printed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -629,7 +633,7 @@ document.write(`
 </div>
 </section>
 <section id="feature-normalization">
-<h2><span class="section-number">25.2. </span>Feature Normalization<a class="headerlink" href="#feature-normalization" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">20.2. </span>Feature Normalization<a class="headerlink" href="#feature-normalization" title="Link to this heading">#</a></h2>
 <p>The data has come to us in vastly different scales. Population can be in the billions, and percent expendature is close to 1. A standard best practice is to scale your input features before modeling. In this case we transform each feature <span class="math notranslate nohighlight">\(x_i\)</span> by</p>
 <div class="math notranslate nohighlight">
 \[x_i \leftarrow \dfrac{x_i - \mu_i}{\sigma_i}\]</div>
@@ -675,7 +679,7 @@ document.write(`
 <p>These coefficients are now in units of (years/standard deviation). If schooling increases by about <span class="math notranslate nohighlight">\(1\sigma = 3.3589\)</span> years then life expectancy increases by about 2 years (we did not scale the target). Normalization definitely helps with interpretations. But there are still some weird things going on here? <strong>Discuss</strong></p>
 </section>
 <section id="eliminating-collinearity">
-<h2><span class="section-number">25.3. </span>Eliminating Collinearity<a class="headerlink" href="#eliminating-collinearity" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">20.3. </span>Eliminating Collinearity<a class="headerlink" href="#eliminating-collinearity" title="Link to this heading">#</a></h2>
 <p>In the last lab we saw how collinear features can increase the condition number of the linear least squares regression matrix, which leads to possibly unstable solutions. It also interferes with the interpretability of regression coefficients. If 2 features are already related (e.g. <span class="math notranslate nohighlight">\(x_1 = -0.3 x_2\)</span>, then either regression coefficient can change arbitrarily as long as its paired coefficient changes in tandem. By manually dropping highly correlated features we can reduce this effect somewhat (although we can’t eliminate it entirely. If you look at the correlation heatmap, there is a lot is cross-correlation in this dataset.)</p>
 <p>Repeate the analysis from the last section here, but first drop collinear columns. A method has been defined for you (look above). Feel free to modify which subset of columns are dropped. You should create both</p>
 <ol class="arabic simple">
@@ -722,7 +726,7 @@ document.write(`
 <p>These weights look pretty stable to me. So I think we’re OK with this regression model.</p>
 </section>
 <section id="ridge-regression">
-<h2><span class="section-number">25.4. </span>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">20.4. </span>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h2>
 <p>While our current linear model is relatively stable to training set fluctuations, it still exhibits a wide range of weights.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -807,7 +811,7 @@ document.write(`
 <p>There is a bit of art and science in regularizing data. Ridge regression may not be doing much for us. Let’s try another method.</p>
 </section>
 <section id="lasso-regression">
-<h2><span class="section-number">25.5. </span>Lasso Regression<a class="headerlink" href="#lasso-regression" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">20.5. </span>Lasso Regression<a class="headerlink" href="#lasso-regression" title="Link to this heading">#</a></h2>
 <p>Lasso regression (<span class="math notranslate nohighlight">\(L_1\)</span> regularization) uses the error (loss) function</p>
 <div class="math notranslate nohighlight">
 \[err_{\alpha} = \sum_{i=1}^m (y_i - \tilde{y}_i)^2 + \alpha \sum_{i = 0}^{n} |a_i|\]</div>
@@ -927,20 +931,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Life_Expectancy.html"
+       href="Life_Expectancy_Student.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">24. </span>Life Expectancy</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Life Expectancy</p>
       </div>
     </a>
     <a class="right-next"
-       href="../cw02.html"
+       href="../coordinates.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">26. </span>Classwork 02</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>Coordinate Transformations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -960,11 +964,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-linear-model">25.1. First Linear Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-normalization">25.2. Feature Normalization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-collinearity">25.3. Eliminating Collinearity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">25.4. Ridge Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression">25.5. Lasso Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-linear-model">20.1. First Linear Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-normalization">20.2. Feature Normalization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-collinearity">20.3. Eliminating Collinearity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">20.4. Ridge Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression">20.5. Lasso Regression</a></li>
 </ul>
   </nav></div>
 

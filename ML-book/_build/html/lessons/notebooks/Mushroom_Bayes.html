@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>27. The Bayes Error Rate &#8212; Machine Learning for Research</title>
+    <title>17. The Bayes Error Rate &#8212; Machine Learning for Research</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/notebooks/Mushroom_Bayes';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="28. Cloudy Days in Leesburg" href="Weather.html" />
-    <link rel="prev" title="26. Classwork 02" href="../cw02.html" />
+    <link rel="next" title="18. Life Expectancy" href="Life_Expectancy_Student.html" />
+    <link rel="prev" title="16. Poisoned Mushroom Dataset" href="Mushroom_Student.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,29 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Tour of Machine Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Student.html">16. Poisoned Mushroom Dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. The Bayes Error Rate</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">16. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy_Student.html">18. Life Expectancy</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">18. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">19. Coordinate Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">20. S2 = S.copy()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA.html">21. PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../picture.html">22. Picture Compression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">23. Cancer Data Logistic Regression (Student)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">20. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">21. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">22. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">23. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../picture.html">24. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">25. Cancer Data Logistic Regression (Student)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">What Is?</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">24. Life Expectancy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cw02.html">26. Classwork 02</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">27. The Bayes Error Rate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Weather.html">28. Cloudy Days in Leesburg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">29. Cloudy Days in Leesburg</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">26. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">27. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw02.html">28. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Weather.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">30. Cloudy Days in Leesburg</a></li>
 </ul>
 
     </div>
@@ -443,7 +447,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-bayes-error-rate">
-<h1><span class="section-number">27. </span>The Bayes Error Rate<a class="headerlink" href="#the-bayes-error-rate" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">17. </span>The Bayes Error Rate<a class="headerlink" href="#the-bayes-error-rate" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -531,20 +535,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../cw02.html"
+       href="Mushroom_Student.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">26. </span>Classwork 02</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Poisoned Mushroom Dataset</p>
       </div>
     </a>
     <a class="right-next"
-       href="Weather.html"
+       href="Life_Expectancy_Student.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">28. </span>Cloudy Days in Leesburg</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Life Expectancy</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

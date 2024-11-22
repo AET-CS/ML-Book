@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>16. Life Expectancy &#8212; Machine Learning for Research</title>
+    <title>18. Life Expectancy &#8212; Machine Learning for Research</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/notebooks/Life_Expectancy_Student';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="18. Life Expectancy – Normalization, Regularization, Feature Selection" href="Life_Part_2.html" />
-    <link rel="prev" title="15.4. Running Time Analysis" href="Running_Time_Analysis.html" />
+    <link rel="next" title="20. Life Expectancy – Normalization, Regularization, Feature Selection" href="Life_Part_2_Student.html" />
+    <link rel="prev" title="17. The Bayes Error Rate" href="Mushroom_Bayes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,25 +211,29 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Tour of Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Student.html">16. Poisoned Mushroom Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">17. The Bayes Error Rate</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Life Expectancy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Life Expectancy</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">18. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">19. Coordinate Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">20. S2 = S.copy()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PCA.html">21. PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../picture.html">22. Picture Compression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">23. Cancer Data Logistic Regression (Student)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">20. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates.html">21. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA%20Matrices.html">22. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">23. PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../picture.html">24. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cancer_Logistic_Student.html">25. Cancer Data Logistic Regression (Student)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">What Is?</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">24. Life Expectancy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Life_Part_2_Student.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cw02.html">26. Classwork 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mushroom_Bayes.html">27. The Bayes Error Rate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Weather.html">28. Cloudy Days in Leesburg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Expectancy.html">26. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Life_Part_2.html">27. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cw02.html">28. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Weather.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weather-teacher.html">30. Cloudy Days in Leesburg</a></li>
 </ul>
 
     </div>
@@ -442,21 +446,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">16. Life Expectancy</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">16.1. Loading the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">16.2. Data Exploration</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix-heat-map">16.2.1. Correlation matrix heat map</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">18. Life Expectancy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">18.1. Loading the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">18.2. Data Exploration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix-heat-map">18.2.1. Correlation matrix heat map</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-modeling">16.3. Data Modeling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">16.3.1. Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-modeling">18.3. Data Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">18.3.1. Linear Regression</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-techniques">16.4. Advanced Techniques</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-analysis">16.5. Importance Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-techniques">18.4. Advanced Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-analysis">18.5. Importance Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17. Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">19. Exercises</a></li>
 </ul>
 
             </nav>
@@ -470,7 +474,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="life-expectancy">
-<h1><span class="section-number">16. </span>Life Expectancy<a class="headerlink" href="#life-expectancy" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">18. </span>Life Expectancy<a class="headerlink" href="#life-expectancy" title="Link to this heading">#</a></h1>
 <p>We are going to take a quick tour of machine learning by working on an example dataset. The mushroom dataset
 categorizes mushrooms as ‘poisonous’ or ‘edible’ and collects several descriptive properties of each mushroom example.</p>
 <div class="cell docutils container">
@@ -495,7 +499,7 @@ categorizes mushrooms as ‘poisonous’ or ‘edible’ and collects several de
 </div>
 </div>
 <section id="loading-the-dataset">
-<h2><span class="section-number">16.1. </span>Loading the dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.1. </span>Loading the dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These lines would load the data locally</span>
@@ -1073,7 +1077,7 @@ categorizes mushrooms as ‘poisonous’ or ‘edible’ and collects several de
 </div>
 </section>
 <section id="data-exploration">
-<h2><span class="section-number">16.2. </span>Data Exploration<a class="headerlink" href="#data-exploration" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.2. </span>Data Exploration<a class="headerlink" href="#data-exploration" title="Link to this heading">#</a></h2>
 <p>Show all the columns. Target is ‘Life expectancy’</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1157,7 +1161,7 @@ Length: 22, dtype: object
 </div>
 </div>
 <section id="correlation-matrix-heat-map">
-<h3><span class="section-number">16.2.1. </span>Correlation matrix heat map<a class="headerlink" href="#correlation-matrix-heat-map" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">18.2.1. </span>Correlation matrix heat map<a class="headerlink" href="#correlation-matrix-heat-map" title="Link to this heading">#</a></h3>
 <p>Let’s get a quick visual representation of the relationshop between features in this dataset. First drop the categorical attributes. Use a <strong>new name</strong> so we don’t pollute the original dataframe</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1303,7 +1307,7 @@ Length: 22, dtype: object
 </section>
 </section>
 <section id="data-modeling">
-<h2><span class="section-number">16.3. </span>Data Modeling<a class="headerlink" href="#data-modeling" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.3. </span>Data Modeling<a class="headerlink" href="#data-modeling" title="Link to this heading">#</a></h2>
 <p>Here we will run a linear regression. First we need to clean up the data a bit. We will create a data pipeline so we can repeat this process as needed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1323,7 +1327,7 @@ Length: 22, dtype: object
 </div>
 </div>
 <section id="linear-regression">
-<h3><span class="section-number">16.3.1. </span>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">18.3.1. </span>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h3>
 <p>Three methods will load the data, preprocess it, and create X and y datasets for training and testing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1417,7 +1421,7 @@ Test R-squared  = 0.789
 </section>
 </section>
 <section id="advanced-techniques">
-<h2><span class="section-number">16.4. </span>Advanced Techniques<a class="headerlink" href="#advanced-techniques" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.4. </span>Advanced Techniques<a class="headerlink" href="#advanced-techniques" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1454,7 +1458,7 @@ Test R-squared  = 0.789
 </div>
 </section>
 <section id="importance-analysis">
-<h2><span class="section-number">16.5. </span>Importance Analysis<a class="headerlink" href="#importance-analysis" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.5. </span>Importance Analysis<a class="headerlink" href="#importance-analysis" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
@@ -1760,7 +1764,7 @@ strong multicollinearity or other numerical problems.
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1><span class="section-number">17. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">19. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p>Notice the warning about multicollinearity in the above analysis. This can happen when two or more features in your training set are linearly related. By reading through the computations we already made, find pairs of rows are have a high correlation and drop one from each pair, then rerun the regression in ‘statsmodel’. Can you get the error to go away?</p></li>
 <li><p>The categorical variable ‘country’ was ordinal encoded above, even though I said that was usually not a great thing to do. Modify our preprocessor so that the data is one-hot-encoded and re-run all the subsequent analyses. What effect does this have on the <span class="math notranslate nohighlight">\(r^2\)</span>?</p></li>
@@ -1800,20 +1804,20 @@ strong multicollinearity or other numerical problems.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Running_Time_Analysis.html"
+       href="Mushroom_Bayes.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15.4. </span>Running Time Analysis</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>The Bayes Error Rate</p>
       </div>
     </a>
     <a class="right-next"
-       href="Life_Part_2.html"
+       href="Life_Part_2_Student.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">18. </span>Life Expectancy – Normalization, Regularization, Feature Selection</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Life Expectancy – Normalization, Regularization, Feature Selection</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1833,21 +1837,21 @@ strong multicollinearity or other numerical problems.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">16. Life Expectancy</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">16.1. Loading the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">16.2. Data Exploration</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix-heat-map">16.2.1. Correlation matrix heat map</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">18. Life Expectancy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">18.1. Loading the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">18.2. Data Exploration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix-heat-map">18.2.1. Correlation matrix heat map</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-modeling">16.3. Data Modeling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">16.3.1. Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-modeling">18.3. Data Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">18.3.1. Linear Regression</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-techniques">16.4. Advanced Techniques</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-analysis">16.5. Importance Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-techniques">18.4. Advanced Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-analysis">18.5. Importance Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17. Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">19. Exercises</a></li>
 </ul>
 
   </nav></div>

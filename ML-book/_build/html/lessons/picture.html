@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>22. Picture Compression &#8212; Machine Learning for Research</title>
+    <title>24. Picture Compression &#8212; Machine Learning for Research</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lessons/picture';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="23. Cancer Data Logistic Regression (Student)" href="notebooks/Cancer_Logistic_Student.html" />
-    <link rel="prev" title="21. PCA" href="notebooks/PCA.html" />
+    <link rel="next" title="25. Cancer Data Logistic Regression (Student)" href="notebooks/Cancer_Logistic_Student.html" />
+    <link rel="prev" title="23. PCA" href="notebooks/PCA.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,25 +211,29 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quick Tour of Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Student.html">16. Poisoned Mushroom Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Bayes.html">17. The Bayes Error Rate</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html">16. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy_Student.html">18. Life Expectancy</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2.html">18. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coordinates.html">19. Coordinate Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA%20Matrices.html">20. S2 = S.copy()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA.html">21. PCA</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. Picture Compression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Cancer_Logistic_Student.html">23. Cancer Data Logistic Regression (Student)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2_Student.html">20. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinates.html">21. Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA%20Matrices.html">22. S2 = S.copy()</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/PCA.html">23. PCA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Picture Compression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Cancer_Logistic_Student.html">25. Cancer Data Logistic Regression (Student)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">What Is?</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy.html">24. Life Expectancy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2_Student.html">25. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cw02.html">26. Classwork 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Mushroom_Bayes.html">27. The Bayes Error Rate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Weather.html">28. Cloudy Days in Leesburg</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/weather-teacher.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Expectancy.html">26. Life Expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Life_Part_2.html">27. Life Expectancy – Normalization, Regularization, Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cw02.html">28. Classwork 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Weather.html">29. Cloudy Days in Leesburg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/weather-teacher.html">30. Cloudy Days in Leesburg</a></li>
 </ul>
 
     </div>
@@ -396,7 +400,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="picture-compression">
-<h1><span class="section-number">22. </span>Picture Compression<a class="headerlink" href="#picture-compression" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">24. </span>Picture Compression<a class="headerlink" href="#picture-compression" title="Link to this heading">#</a></h1>
 <p>Create a notebook “Gauss_Image.ipynb”</p>
 <p>You will use an SVD to compress <a class="reference download internal" download="" href="../_downloads/5c28393b545f7eff156f823657b1ba60/gauss.jpg"><span class="xref download myst">this picture</span></a>. Learn how to use “PIL” to import the picture and resize it to a square 1024x1024. Convert it to an array and display it in grayscale. (Easy to google this bit.)</p>
 <p>Now use the technique from class to compute the SVD of the picture. Plot the values of the diagonal matrix <span class="math notranslate nohighlight">\(\Sigma\)</span>. You will see a point at which the become very small.</p>
@@ -443,7 +447,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">21. </span>PCA</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>PCA</p>
       </div>
     </a>
     <a class="right-next"
@@ -451,7 +455,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">23. </span>Cancer Data Logistic Regression (Student)</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Cancer Data Logistic Regression (Student)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
